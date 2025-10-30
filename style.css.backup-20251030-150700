@@ -1,0 +1,187 @@
+/* Base */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+    margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+/* Accessibility utilities */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: 12px; top: 8px;
+  background: #111; color: #fff; padding: 8px 12px; border-radius: 8px;
+  transform: translateY(-150%);
+  text-decoration: none; z-index: 9999;
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* Smooth scrolling for in-page anchors (respects reduced motion) */
+html { scroll-behavior: smooth; }
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid #111; outline-offset: 2px;
+}
+
+/* Container */
+.container { width: min(1200px, 92vw); margin: 0 auto; }
+
+/* Minimal top-right nav */
+.top-nav { position: fixed; right: clamp(12px, 3vw, 32px); top: clamp(12px, 2vh, 24px); z-index: 100; display:flex; gap: 14px; align-items:center; }
+.top-nav a { text-decoration:none; color:#111; font-weight:600; padding: 6px 8px; border-radius: 8px; }
+.top-nav a:hover { background:#111; color:#fff; }
+
+/* Hero */
+.hero { position: relative; min-height: 100vh; }
+.hero-overlay { position:absolute; inset:0; pointer-events:none; }
+.hero-content{
+  position:absolute; left:50%; top:33vh; transform:translate(-50%,-50%);
+  width:min(92vw, 1200px); text-align:center; display:grid; gap: clamp(4px, 1.2vw, 16px);
+  justify-items: center;
+}
+
+/* Logo groter + responsive */
+#logo { display:flex; justify-content:center; align-items:center; width:100%; line-height:0; margin: 0 auto; }
+#logo svg { width: clamp(480px, 64vw, 1200px); height:auto; display:block; margin: 0 auto; overflow: visible; }
+
+/* Belangrijk voor juiste rotatie en scale */
+svg * { transform-box: fill-box; transform-origin: center; }
+
+/* Hero teksten */
+.hero-subtitle{
+  font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  font-size: clamp(12px, 1.6vw, 16px); color:#111; margin:0;
+}
+.hero-description{
+  font-weight: 400; font-size: clamp(14px, 1.8vw, 18px); color:#555; margin:0;
+}
+/* Slogan dichter tegen logo aan */
+.hero-subtitle { margin-top: -10px; }
+.hero-description { margin-top: -6px; }
+
+/* Hero buttons als vervanging van top navigatie */
+.hero-buttons { display:flex; gap: 12px; justify-content:center; flex-wrap: wrap; margin-top: 8px; }
+.hero-button { display:inline-block; padding: 10px 14px; border-radius: 999px; border:1px solid #ddd; background:#fff; color:#111; text-decoration:none; font-weight: 600; }
+.hero-button:hover { background:#111; color:#fff; }
+
+/* Scroll indicator */
+.scroll-indicator{ position:absolute; left:50%; bottom: clamp(80px, 20vh, 160px); transform: translateX(-50%); text-align:center; color:#777; font-size:12px; }
+.scroll-indicator .mouse{ width:24px; height:36px; border:2px solid #bbb; border-radius:16px; margin:0 auto 6px; position:relative; }
+.scroll-indicator .wheel{ width:2px; height:8px; background:#bbb; border-radius:2px; position:absolute; left:50%; top:6px; transform:translateX(-50%); animation: wheel 1.2s ease-in-out infinite; }
+@keyframes wheel{ 0%{opacity:0; transform:translate(-50%,0)} 50%{opacity:.9} 100%{opacity:0; transform:translate(-50%,10px)} }
+
+/* About */
+.section-header { text-align:center; margin-bottom: 24px; }
+.section-title { font-size: clamp(22px, 3vw, 36px); margin: 0 0 8px 0; }
+.title-underline { width: 60px; height: 3px; background:#111; margin: 0 auto; border-radius: 3px; }
+.about { padding: clamp(32px, 6vw, 96px) 0; }
+.about-content { display:grid; grid-template-columns: 1.2fr 1fr; gap: clamp(16px, 4vw, 48px); align-items:center; }
+.about-text h3 { margin-top:0; }
+.about-features { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; margin-top: 16px; }
+.feature-item { background:#f7f7f7; border:1px solid #eee; border-radius: 12px; padding: 14px; }
+.feature-icon { font-size: 20px; }
+
+/* Placeholder image block */
+.image-placeholder { display:grid; place-items:center; height: 280px; border:2px dashed #ddd; border-radius: 12px; color:#999; }
+
+/* Services */
+.services { padding: clamp(32px, 6vw, 96px) 0; background:#fafafa; border-top:1px solid #f0f0f0; }
+.services-grid { display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: clamp(16px, 2.5vw, 28px); }
+.service-card { background:#fff; border:1px solid #eee; border-radius: 14px; padding: 18px; }
+.service-icon { font-size: 22px; }
+
+/* Contact */
+.contact { padding: clamp(32px, 6vw, 96px) 0; }
+.contact-content { display:grid; grid-template-columns: 1fr 1.2fr; gap: clamp(16px, 4vw, 48px); }
+.contact-item { display:flex; gap:12px; align-items:flex-start; margin-bottom: 12px; }
+.contact-icon { font-size: 18px; width: 24px; text-align:center; }
+.form-group { margin-bottom:10px; }
+input, textarea { width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font: inherit; }
+.submit-button { padding: 12px 16px; border:0; border-radius: 10px; background:#111; color:#fff; font-weight: 600; cursor:pointer; }
+.submit-button:hover { background:#000; }
+
+/* Footer */
+.footer { padding: 40px 0; background:#111; color:#fff; margin-top: 40px; }
+.footer-content { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; width:min(1200px,92vw); margin:0 auto; }
+.footer-section h3, .footer-section h4 { margin-top:0; }
+.footer-section a { color:#ddd; text-decoration:none; }
+.footer-section a:hover { color:#fff; }
+.footer-bottom { border-top:1px solid #2a2a2a; margin-top:16px; padding-top:12px; text-align:center; color:#bbb; font-size: 12px; }
+
+/* Animaties voor jouw SVG-groepen (IDs uit je bestand) */
+/* E start op 50°, draait naar 60° wanneer punt op verste punt is, dan schokkend naar 0° */
+#Letter_x5F_E {
+  animation: e-jerk 1400ms cubic-bezier(.15,.9,.1,1) 300ms 1 both;
+  transform: rotate(50deg);
+}
+
+/* Punt komt binnen van rechts naar links */
+#Letter_x5F_Punt {
+  animation: punt-in 1100ms ease-out 300ms 1 both;
+}
+
+/* TM verschijnt nadat de E klaar is op 0 graden */
+#Letter_x5F_TM {
+  animation: tm-pop 520ms cubic-bezier(.2,1,.2,1) 1700ms 1 both;
+}
+
+@keyframes e-jerk {
+  0%   { transform: rotate(50deg); }
+  55%  { transform: rotate(50deg); } /* Blijft stil tot iets voor punt hem raakt */
+  65%  { transform: rotate(70deg); } /* Draait verder bij raken */
+  70%  { transform: rotate(18deg); }
+  78%  { transform: rotate(-14deg); }
+  84%  { transform: rotate(10deg); }
+  90%  { transform: rotate(-6deg); }
+  94%  { transform: rotate(3.5deg); }
+  97%  { transform: rotate(-1.8deg); }
+  99%  { transform: rotate(0.8deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes punt-in {
+  0%   { transform: translateX(180px); opacity: 0; }
+  15%  { transform: translateX(100px); opacity: 1; }
+  50%  { transform: translateX(20px); }
+  78%  { transform: translateX(-18px); } /* overshoot iets naar links */
+  90%  { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes tm-pop {
+  0%   { transform: scale(.6); opacity: 0; }
+  60%  { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .about-content { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .contact-content { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px){
+  .nav-menu { display:none; }
+  .hamburger { display:block; }
+  .services-grid { grid-template-columns: 1fr; }
+  .hero-content { top: 35vh; }
+  #logo svg { width: clamp(320px, 86vw, 900px); }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce){
+  * { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+

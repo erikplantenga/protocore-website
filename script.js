@@ -16,13 +16,14 @@ function setupMobileNav() {
 
   const openMenu = () => {
     menu.style.display = 'flex';
-    menu.style.flexDirection = 'column';
-    menu.style.gap = '12px';
+    menu.style.setProperty('flex-direction', 'column', 'important');
+    menu.style.setProperty('gap', '12px', 'important');
     burger.setAttribute('aria-expanded', 'true');
   };
 
   const closeMenu = () => {
     menu.style.display = 'none';
+    menu.style.setProperty('display', 'none', 'important');
     burger.setAttribute('aria-expanded', 'false');
   };
 

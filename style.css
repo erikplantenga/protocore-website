@@ -698,8 +698,8 @@ svg * { transform-box: fill-box; transform-origin: center; }
 
 @media (max-width: 768px) {
   .services-process-cards {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: clamp(4px, 1vw, 8px);
+    grid-template-columns: 1fr !important;
+    gap: clamp(8px, 2vw, 12px);
   }
   
   .services-process-card {
@@ -715,9 +715,9 @@ svg * { transform-box: fill-box; transform-origin: center; }
   }
   
   .services-process-icon-container {
-    width: clamp(40px, 10vw, 50px) !important;
-    height: clamp(40px, 10vw, 50px) !important;
-    margin-bottom: 6px !important;
+    width: clamp(50px, 12vw, 60px) !important;
+    aspect-ratio: 1 !important; /* Vierkant: hoogte = breedte */
+    margin-bottom: 0 !important;
     border-radius: 8px !important; /* Mooie ronde hoeken */
     background: #3d2817 !important;
     border: 2px solid #d47300 !important;
@@ -736,13 +736,14 @@ svg * { transform-box: fill-box; transform-origin: center; }
     font-size: clamp(10px, 2.5vw, 12px) !important;
     margin: 0 0 3px 0 !important;
     line-height: 1.2 !important;
-    text-align: center !important;
+    text-align: left !important;
   }
   
   .card-request-text {
     font-size: clamp(8px, 2vw, 9px) !important;
     margin: 0 !important;
     line-height: 1.2 !important;
+    text-align: left !important;
   }
   
   /* Hover images uitschakelen op mobiel */
@@ -1034,9 +1035,16 @@ input::placeholder, textarea::placeholder {
     z-index: 102;
   }
   
-  /* Wanneer menu open is */
-  .top-nav .nav-menu[style*="flex"] {
+  /* Wanneer menu open is - check op inline style */
+  .top-nav .nav-menu[style*="flex"],
+  .top-nav .nav-menu[style*="display: flex"] {
     display: flex !important;
+  }
+  
+  /* Zorg dat menu sluit als display: none wordt gezet */
+  .top-nav .nav-menu[style*="none"],
+  .top-nav .nav-menu[style*="display: none"] {
+    display: none !important;
   }
   
   .nav-menu a {
@@ -1053,26 +1061,27 @@ input::placeholder, textarea::placeholder {
   
   .services-grid { grid-template-columns: 1fr; }
   
-  /* Services responsive voor mobiel - vierkant, naast elkaar */
+  /* Services responsive voor mobiel - onder elkaar */
   .services-process-cards {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: clamp(4px, 1vw, 8px) !important;
+    grid-template-columns: 1fr !important;
+    gap: clamp(8px, 2vw, 12px) !important;
   }
   
   .services-process-card {
-    padding: clamp(8px, 2vw, 12px) !important;
-    aspect-ratio: 1 !important; /* Vierkant maken */
+    padding: clamp(12px, 3vw, 16px) !important;
+    aspect-ratio: auto !important; /* Niet vierkant, gewoon rechthoekig */
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important; /* Icon en tekst naast elkaar */
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     min-height: 0 !important;
+    gap: clamp(12px, 3vw, 16px) !important;
   }
   
   .services-process-icon-container {
-    width: clamp(40px, 10vw, 50px) !important;
-    height: clamp(40px, 10vw, 50px) !important;
-    margin-bottom: 6px !important;
+    width: clamp(50px, 12vw, 60px) !important;
+    aspect-ratio: 1 !important; /* Vierkant: hoogte = breedte */
+    margin-bottom: 0 !important;
     border-radius: 8px !important; /* Mooie ronde hoeken */
     background: #3d2817 !important;
     border: 2px solid #d47300 !important;
@@ -1080,6 +1089,11 @@ input::placeholder, textarea::placeholder {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+  }
+  
+  .services-process-card h3,
+  .card-request-text {
+    text-align: left !important;
   }
   
   .services-process-icon-container img {
@@ -1169,16 +1183,28 @@ input::placeholder, textarea::placeholder {
     display: block !important;
   }
   
-  /* Teksten voor mobiel - zichtbaar en groter */
+  /* Teksten voor mobiel - animatie 1 voor 1 */
   .hero-subtitle { 
     font-size: clamp(12px, 3vw, 16px) !important;
     margin-top: clamp(16px, 4vh, 24px) !important;
-    opacity: 1 !important;
   }
   
   .hero-subtitle span {
-    opacity: 1 !important;
-    animation: none !important;
+    opacity: 0 !important;
+    animation: text-fade-in 600ms ease-out 1 both,
+               text-fade-fallback 200ms ease-out 1 forwards !important;
+  }
+  
+  .hero-subtitle .hero-word-1 {
+    animation-delay: 1200ms, 2000ms !important;
+  }
+  
+  .hero-subtitle .hero-word-2 {
+    animation-delay: 2000ms, 2800ms !important;
+  }
+  
+  .hero-subtitle .hero-word-3 {
+    animation-delay: 2800ms, 3600ms !important;
   }
   .hero-description { 
     font-size: clamp(12px, 3.5vw, 16px) !important;

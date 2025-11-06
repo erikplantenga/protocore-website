@@ -698,52 +698,47 @@ svg * { transform-box: fill-box; transform-origin: center; }
 
 @media (max-width: 768px) {
   .services-process-cards {
-    grid-template-columns: 1fr !important;
-    gap: clamp(8px, 2vw, 12px);
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 4vw, 24px);
   }
   
   .services-process-card {
-    padding: clamp(12px, 3vw, 16px) !important;
-    border-radius: 12px !important;
-    aspect-ratio: 1 !important; /* Vierkant maken */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-height: 0 !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    padding: clamp(24px, 6vw, 36px);
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   
   .services-process-icon-container {
-    width: clamp(50px, 12vw, 60px) !important;
-    aspect-ratio: 1 !important; /* Vierkant: hoogte = breedte */
-    margin-bottom: 0 !important;
-    border-radius: 8px !important; /* Mooie ronde hoeken */
-    background: #3d2817 !important;
-    border: 2px solid #d47300 !important;
-    flex-shrink: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    width: clamp(60px, 15vw, 80px);
+    height: clamp(60px, 15vw, 80px);
+    margin-bottom: clamp(16px, 4vw, 24px);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .services-process-icon-container img {
-    width: clamp(24px, 6vw, 30px) !important;
-    height: clamp(24px, 6vw, 30px) !important;
+    width: clamp(36px, 9vw, 48px);
+    height: clamp(36px, 9vw, 48px);
   }
   
   .services-process-card h3 {
-    font-size: clamp(10px, 2.5vw, 12px) !important;
-    margin: 0 0 3px 0 !important;
-    line-height: 1.2 !important;
-    text-align: left !important;
+    font-size: clamp(16px, 4vw, 20px);
+    margin: 0 0 clamp(8px, 2vw, 12px) 0;
+    line-height: 1.3;
+    text-align: center;
   }
   
   .card-request-text {
-    font-size: clamp(8px, 2vw, 9px) !important;
-    margin: 0 !important;
-    line-height: 1.2 !important;
-    text-align: left !important;
+    font-size: clamp(10px, 2.5vw, 12px);
+    margin: 0;
+    line-height: 1.4;
+    text-align: center;
   }
   
   /* Hover images uitschakelen op mobiel */
@@ -1061,57 +1056,49 @@ input::placeholder, textarea::placeholder {
   
   .services-grid { grid-template-columns: 1fr; }
   
-  /* Services responsive voor mobiel - onder elkaar */
+  /* Services responsive voor mobiel - zelfde layout als iPad maar kleiner */
   .services-process-cards {
     grid-template-columns: 1fr !important;
-    gap: clamp(8px, 2vw, 12px) !important;
+    gap: clamp(16px, 4vw, 24px) !important;
   }
   
   .services-process-card {
-    padding: clamp(12px, 3vw, 16px) !important;
-    aspect-ratio: auto !important; /* Niet vierkant, gewoon rechthoekig */
+    padding: clamp(24px, 6vw, 36px) !important;
+    border-radius: 12px !important;
+    text-align: center !important;
     display: flex !important;
-    flex-direction: row !important; /* Icon en tekst naast elkaar */
+    flex-direction: column !important;
     align-items: center !important;
-    justify-content: flex-start !important;
-    min-height: 0 !important;
-    gap: clamp(12px, 3vw, 16px) !important;
+    justify-content: center !important;
   }
   
   .services-process-icon-container {
-    width: clamp(50px, 12vw, 60px) !important;
-    aspect-ratio: 1 !important; /* Vierkant: hoogte = breedte */
-    margin-bottom: 0 !important;
-    border-radius: 8px !important; /* Mooie ronde hoeken */
-    background: #3d2817 !important;
-    border: 2px solid #d47300 !important;
-    flex-shrink: 0 !important;
+    width: clamp(60px, 15vw, 80px) !important;
+    height: clamp(60px, 15vw, 80px) !important;
+    margin-bottom: clamp(16px, 4vw, 24px) !important;
+    border-radius: 10px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
   }
   
-  .services-process-card h3,
-  .card-request-text {
-    text-align: left !important;
-  }
-  
   .services-process-icon-container img {
-    width: clamp(24px, 6vw, 30px) !important;
-    height: clamp(24px, 6vw, 30px) !important;
+    width: clamp(36px, 9vw, 48px) !important;
+    height: clamp(36px, 9vw, 48px) !important;
   }
   
   .services-process-card h3 {
-    font-size: clamp(10px, 2.5vw, 12px) !important;
-    margin: 0 0 3px 0 !important;
-    line-height: 1.2 !important;
+    font-size: clamp(16px, 4vw, 20px) !important;
+    margin: 0 0 clamp(8px, 2vw, 12px) 0 !important;
+    line-height: 1.3 !important;
     text-align: center !important;
   }
   
   .card-request-text {
-    font-size: clamp(8px, 2vw, 9px) !important;
+    font-size: clamp(10px, 2.5vw, 12px) !important;
     margin: 0 !important;
-    line-height: 1.2 !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
   }
   
   /* Hover images uitschakelen op mobiel */
@@ -1177,16 +1164,16 @@ input::placeholder, textarea::placeholder {
     padding: 4px 8px; 
   }
   
-  /* Logo kleiner voor mobiel - compact voor 1 scherm */
+  /* Logo voor mobiel - zelfde verhoudingen als iPad maar kleiner */
   #logo svg, #logo img { 
-    width: clamp(160px, 50vw, 280px) !important;
+    width: clamp(280px, 70vw, 400px) !important;
     display: block !important;
   }
   
-  /* Teksten voor mobiel - animatie 1 voor 1 */
+  /* Teksten voor mobiel - animatie 1 voor 1, zelfde verhoudingen als iPad */
   .hero-subtitle { 
-    font-size: clamp(12px, 3vw, 16px) !important;
-    margin-top: clamp(16px, 4vh, 24px) !important;
+    font-size: clamp(11px, 2.5vw, 14px) !important;
+    margin-top: clamp(24px, 6vh, 40px) !important;
   }
   
   .hero-subtitle span {

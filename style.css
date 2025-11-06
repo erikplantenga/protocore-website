@@ -91,6 +91,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* Container */
 .container { width: min(1200px, 92vw); margin: 0 auto; }
 
+/* Op mobiel: container volledig schermvullend */
+@media (max-width: 768px) {
+  .container {
+    width: 100% !important;
+    padding: 0 clamp(12px, 3vw, 20px) !important;
+  }
+}
+
 /* ==========================
    Expertise Section (Page 2)
    ========================== */
@@ -695,14 +703,15 @@ svg * { transform-box: fill-box; transform-origin: center; }
   }
   
   .services-process-card {
-    padding: clamp(8px, 2vw, 12px) !important;
-    border-radius: 8px !important;
+    padding: clamp(12px, 3vw, 16px) !important;
+    border-radius: 12px !important;
     aspect-ratio: 1 !important; /* Vierkant maken */
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
     min-height: 0 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
   }
   
   .services-process-icon-container {
@@ -1194,7 +1203,7 @@ input::placeholder, textarea::placeholder {
   
   /* About sectie op mobiel - volledig schermvullend */
   .about-section {
-    padding: clamp(8px, 2vh, 16px) 0 !important;
+    padding: clamp(16px, 4vh, 24px) clamp(12px, 3vw, 20px) !important;
     min-height: 100vh !important;
     min-height: -webkit-fill-available !important;
     height: 100vh !important;
@@ -1206,6 +1215,8 @@ input::placeholder, textarea::placeholder {
   
   .about-section .container {
     min-height: auto !important;
+    width: 100% !important;
+    padding: 0 !important;
   }
   
   .about-title {
@@ -1264,7 +1275,7 @@ input::placeholder, textarea::placeholder {
   
   /* Page2/Expertise sectie - volledig schermvullend */
   .page2-section {
-    padding: clamp(8px, 2vh, 16px) 0 !important;
+    padding: clamp(16px, 4vh, 24px) clamp(12px, 3vw, 20px) !important;
     min-height: 100vh !important;
     min-height: -webkit-fill-available !important;
     height: 100vh !important;
@@ -1273,6 +1284,11 @@ input::placeholder, textarea::placeholder {
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
+  }
+  
+  .page2-content {
+    width: 100% !important;
+    padding: 0 !important;
   }
   
   .services-header {

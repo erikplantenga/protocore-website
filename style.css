@@ -706,29 +706,33 @@ svg * { transform-box: fill-box; transform-origin: center; }
   }
   
   .services-process-icon-container {
-    width: clamp(24px, 6vw, 32px) !important;
-    height: clamp(24px, 6vw, 32px) !important;
-    margin-bottom: 4px !important;
-    border-radius: 6px !important;
+    width: clamp(40px, 10vw, 50px) !important;
+    height: clamp(40px, 10vw, 50px) !important;
+    margin-bottom: 6px !important;
+    border-radius: 0 !important; /* Vierkante border */
+    border: 2px solid #d47300 !important;
     flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   
   .services-process-icon-container img {
-    width: clamp(14px, 3.5vw, 18px) !important;
-    height: clamp(14px, 3.5vw, 18px) !important;
+    width: clamp(24px, 6vw, 30px) !important;
+    height: clamp(24px, 6vw, 30px) !important;
   }
   
   .services-process-card h3 {
-    font-size: clamp(8px, 2vw, 10px) !important;
-    margin: 0 0 2px 0 !important;
-    line-height: 1.1 !important;
+    font-size: clamp(10px, 2.5vw, 12px) !important;
+    margin: 0 0 3px 0 !important;
+    line-height: 1.2 !important;
     text-align: center !important;
   }
   
   .card-request-text {
-    font-size: clamp(6px, 1.2vw, 7px) !important;
+    font-size: clamp(8px, 2vw, 9px) !important;
     margin: 0 !important;
-    line-height: 1.1 !important;
+    line-height: 1.2 !important;
   }
   
   /* Hover images uitschakelen op mobiel */
@@ -1056,28 +1060,33 @@ input::placeholder, textarea::placeholder {
   }
   
   .services-process-icon-container {
-    width: clamp(24px, 6vw, 32px) !important;
-    height: clamp(24px, 6vw, 32px) !important;
-    margin-bottom: 4px !important;
+    width: clamp(40px, 10vw, 50px) !important;
+    height: clamp(40px, 10vw, 50px) !important;
+    margin-bottom: 6px !important;
+    border-radius: 0 !important; /* Vierkante border */
+    border: 2px solid #d47300 !important;
     flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   
   .services-process-icon-container img {
-    width: clamp(14px, 3.5vw, 18px) !important;
-    height: clamp(14px, 3.5vw, 18px) !important;
+    width: clamp(24px, 6vw, 30px) !important;
+    height: clamp(24px, 6vw, 30px) !important;
   }
   
   .services-process-card h3 {
-    font-size: clamp(8px, 2vw, 10px) !important;
-    margin: 0 0 2px 0 !important;
-    line-height: 1.1 !important;
+    font-size: clamp(10px, 2.5vw, 12px) !important;
+    margin: 0 0 3px 0 !important;
+    line-height: 1.2 !important;
     text-align: center !important;
   }
   
   .card-request-text {
-    font-size: clamp(6px, 1.2vw, 7px) !important;
+    font-size: clamp(8px, 2vw, 9px) !important;
     margin: 0 !important;
-    line-height: 1.1 !important;
+    line-height: 1.2 !important;
   }
   
   /* Hover images uitschakelen op mobiel */
@@ -1149,28 +1158,16 @@ input::placeholder, textarea::placeholder {
     display: block !important;
   }
   
-  /* Teksten kleiner voor mobiel - compact voor 1 scherm */
+  /* Teksten voor mobiel - zichtbaar en groter */
   .hero-subtitle { 
-    font-size: clamp(8px, 2vw, 10px) !important;
-    margin-top: 12px;
+    font-size: clamp(12px, 3vw, 16px) !important;
+    margin-top: clamp(16px, 4vh, 24px) !important;
+    opacity: 1 !important;
   }
   
   .hero-subtitle span {
-    opacity: 0;
-    animation: text-fade-in 600ms ease-out 1 both,
-               text-fade-fallback 200ms ease-out 1 forwards;
-  }
-  
-  .hero-subtitle .hero-word-1 {
-    animation-delay: 1200ms, 2000ms;
-  }
-  
-  .hero-subtitle .hero-word-2 {
-    animation-delay: 2000ms, 2800ms;
-  }
-  
-  .hero-subtitle .hero-word-3 {
-    animation-delay: 2800ms, 3600ms;
+    opacity: 1 !important;
+    animation: none !important;
   }
   .hero-description { 
     font-size: clamp(12px, 3.5vw, 16px) !important;
@@ -1221,9 +1218,9 @@ input::placeholder, textarea::placeholder {
   }
   
   .about-text {
-    font-size: clamp(10px, 2.2vw, 12px) !important;
-    margin-bottom: clamp(4px, 1vh, 8px) !important;
-    line-height: 1.4 !important;
+    font-size: clamp(12px, 3vw, 14px) !important;
+    margin-bottom: clamp(6px, 1.5vh, 10px) !important;
+    line-height: 1.5 !important;
   }
   
   .about-photo-container {
@@ -1257,10 +1254,12 @@ input::placeholder, textarea::placeholder {
     100% { transform: translateX(0); }
   }
   
-  /* Scroll indicator kleiner op mobiel */
+  /* Scroll indicator zichtbaar op mobiel */
   .scroll-indicator { 
-    bottom: clamp(10px, 2vh, 20px); 
-    font-size: 10px; 
+    bottom: clamp(20px, 5vh, 40px) !important; 
+    font-size: clamp(10px, 2.5vw, 12px) !important;
+    opacity: 1 !important;
+    display: block !important;
   }
   
   /* Page2/Expertise sectie - volledig schermvullend */
@@ -1343,9 +1342,9 @@ input::placeholder, textarea::placeholder {
   }
   
   .contact-description {
-    font-size: clamp(10px, 2.2vw, 12px) !important;
-    margin-bottom: clamp(4px, 1vh, 8px) !important;
-    line-height: 1.4 !important;
+    font-size: clamp(12px, 3vw, 14px) !important;
+    margin-bottom: clamp(6px, 1.5vh, 10px) !important;
+    line-height: 1.5 !important;
   }
   
   .contact-content {

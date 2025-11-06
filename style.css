@@ -1173,9 +1173,12 @@ input::placeholder, textarea::placeholder {
     100% { transform: translateX(0); }
   }
 
-  /* About section: full screen */
+  /* About section: full screen with aligned text width */
   .about-section {
-    padding: clamp(16px, 4vh, 24px) clamp(12px, 3vw, 20px) !important;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     min-height: 100vh !important;
     min-height: -webkit-fill-available !important;
     height: 100vh !important;
@@ -1185,10 +1188,23 @@ input::placeholder, textarea::placeholder {
     justify-content: center !important;
   }
 
+  /* Reduce side padding for tighter alignment */
   .about-section .container {
     min-height: auto !important;
     width: 100% !important;
-    padding: 0 !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  /* Headings + text max width aligned */
+  .about-section h1,
+  .about-section p,
+  .about-section .about-title,
+  .about-section .about-title-line,
+  .about-section .about-text {
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 
   .about-title {
@@ -1227,9 +1243,12 @@ input::placeholder, textarea::placeholder {
     grid-template-columns: 1fr;
   }
 
-  /* Page2/Expertise section: full screen */
+  /* Page2/Expertise section: full screen with aligned text width */
   .page2-section {
-    padding: clamp(12px, 3vh, 20px) clamp(12px, 3vw, 20px) !important;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     min-height: 100vh !important;
     min-height: -webkit-fill-available !important;
     height: 100vh !important;
@@ -1241,9 +1260,29 @@ input::placeholder, textarea::placeholder {
     justify-content: flex-start !important;
   }
 
+  /* Reduce side padding for tighter grid alignment */
+  .page2-section .container,
+  .page2-content {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
   .page2-content {
     width: 100% !important;
-    padding: clamp(8px, 2vh, 12px) 0 0 0 !important;
+    padding-top: clamp(8px, 2vh, 12px) !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Headings + text max width matches card grid */
+  .page2-section h2,
+  .page2-section p,
+  .page2-section .services-description,
+  .page2-section .services-title-line,
+  .page2-section .services-title,
+  .page2-section .services-header {
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 
   .services-header {
@@ -1266,9 +1305,11 @@ input::placeholder, textarea::placeholder {
     line-height: 1.4 !important;
   }
 
+  /* Slightly larger top margin for "Choose Your Path" */
   .services-choose-path {
     font-size: clamp(12px, 3vw, 14px) !important;
-    margin: clamp(8px, 2vh, 12px) auto 0 !important;
+    margin-top: 12px !important;
+    margin-bottom: 16px !important;
   }
 
   .services-process {
@@ -1360,9 +1401,12 @@ input::placeholder, textarea::placeholder {
     display: none !important;
   }
 
-  /* Contact section: full screen */
+  /* Contact section: full screen with aligned text width */
   .contact {
-    padding: clamp(8px, 2vh, 16px) 0 !important;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     min-height: 100vh !important;
     min-height: -webkit-fill-available !important;
     height: 100vh !important;
@@ -1370,6 +1414,23 @@ input::placeholder, textarea::placeholder {
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
+  }
+
+  /* Reduce side padding for tighter alignment */
+  .contact .container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  /* Headings + text max width aligned */
+  .contact h2,
+  .contact p,
+  .contact .contact-title,
+  .contact .contact-title-line,
+  .contact .contact-description {
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 
   .contact-header {

@@ -309,15 +309,15 @@ svg * { transform-box: fill-box; transform-origin: center; }
 }
 
 .hero-subtitle .hero-word-1 {
-  animation-delay: 2450ms;
+  animation-delay: 600ms;
 }
 
 .hero-subtitle .hero-word-2 {
-  animation-delay: 3350ms;
+  animation-delay: 1200ms;
 }
 
 .hero-subtitle .hero-word-3 {
-  animation-delay: 4050ms;
+  animation-delay: 1800ms;
 }
 .hero-description{
   font-weight: 300; 
@@ -746,7 +746,14 @@ svg * { transform-box: fill-box; transform-origin: center; }
   opacity: 0.3;
 }
 
-.services-process-card .card-inner,
+.services-process-card .card-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
 .services-process-card .services-process-icon-container,
 .services-process-card h3,
 .services-process-card p {
@@ -760,7 +767,9 @@ svg * { transform-box: fill-box; transform-origin: center; }
   font-weight: 400;
   text-transform: lowercase;
   letter-spacing: 0.05em;
-  margin: 8px 0 0 0;
+  margin-top: 6px !important;
+  margin-bottom: 4px !important;
+  padding-bottom: 4px !important; /* breathing room from border */
   opacity: 0.7;
   text-align: center;
 }
@@ -1110,23 +1119,24 @@ input::placeholder, textarea::placeholder {
   .hero-subtitle {
     font-size: clamp(11px, 2.5vw, 14px) !important;
     margin-top: clamp(24px, 6vh, 40px) !important;
+    opacity: 1 !important;
   }
 
   .hero-subtitle span {
     opacity: 0 !important;
-    animation: text-fade-in 600ms ease-out 1 both !important;
+    animation: text-fade-in 600ms ease-out forwards !important;
   }
 
   .hero-subtitle .hero-word-1 {
-    animation-delay: 2450ms !important;
+    animation-delay: 600ms !important;
   }
 
   .hero-subtitle .hero-word-2 {
-    animation-delay: 3350ms !important;
+    animation-delay: 1200ms !important;
   }
 
   .hero-subtitle .hero-word-3 {
-    animation-delay: 4050ms !important;
+    animation-delay: 1800ms !important;
   }
 
   .hero-description {
@@ -1333,10 +1343,11 @@ input::placeholder, textarea::placeholder {
     object-fit: contain !important;
   }
 
-  /* Click for request: hoger zetten, meer ruimte eronder */
-  .page2-section .services-process .card-request-text {
-    margin-top: 2px !important;
-    margin-bottom: 8px !important;
+  /* Click for request: hoger zetten, meer ruimte eronder (mobile) */
+  .services-process-card .card-request-text {
+    margin-top: 4px !important;
+    margin-bottom: 6px !important;
+    padding-bottom: 6px !important;
   }
 
   /* Hover images disabled on mobile */

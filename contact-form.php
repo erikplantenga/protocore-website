@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Haal gegevens op en maak ze veilig
     $name = strip_tags(trim($_POST["name"]));
     $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-    $phone = strip_tags(trim($_POST["phone"]));
+    $subject = strip_tags(trim($_POST["subject"]));
     $message = strip_tags(trim($_POST["message"]));
     
     // Validatie
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email_content .= "================================\n\n";
         $email_content .= "Naam: $name\n";
         $email_content .= "Email: $email\n";
-        $email_content .= "Telefoon: $phone\n\n";
+        $email_content .= "Onderwerp: $subject\n\n";
         $email_content .= "Bericht:\n";
         $email_content .= "$message\n\n";
         $email_content .= "================================\n";

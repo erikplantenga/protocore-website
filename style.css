@@ -1,3 +1,13 @@
+/* ==========================
+   Protocore Website Styles
+   ========================== */
+
+/* ==========================
+   Base Styles & Reset
+   ========================== */
+html, body {
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
 /* Base */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
@@ -6,6 +16,12 @@ body {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: #111;
   background: #fff;
+}
+
+/* CSS Variabelen */
+:root { 
+  --logo-nudge: 0px;           /* GetCTM-based crop is nu exact gecentreerd - geen nudge nodig */
+  --text-nudge: 0px;           /* teksten weer standaard centreren */
 }
 
 /* Accessibility utilities */
@@ -26,7 +42,16 @@ body {
 .skip-link:focus { transform: translateY(0); }
 
 /* Smooth scrolling for in-page anchors (respects reduced motion) */
-html { scroll-behavior: smooth; }
+html { 
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+/* Scroll snap voor alle secties */
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
 
 /* Focus visibility */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
@@ -36,14 +61,146 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* Container */
 .container { width: min(1200px, 92vw); margin: 0 auto; }
 
+/* ==========================
+   Expertise Section (Page 2)
+   ========================== */
+.page2-section {
+  position: relative;
+  padding: clamp(16px, 3vw, 48px) 0 clamp(48px, 8vw, 96px) 0;
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(255,255,255,0.12), transparent 60%), linear-gradient(180deg, #f5f5f5, #e8e8e8);
+  overflow: visible;
+  min-height: 100vh;
+  width: 100%;
+  z-index: 1;
+}
+
+.page2-overlay {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(0,0,0,0.04) 0,
+    rgba(0,0,0,0.04) 2px,
+    rgba(255,255,255,0.04) 2px,
+    rgba(255,255,255,0.04) 4px
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.page2-content {
+  position: relative;
+  text-align: left;
+  color: #333;
+  padding: 0;
+  z-index: 1;
+}
+
+.page2-content .services-header {
+  text-align: left;
+}
+
+.page2-content .services-title {
+  color: #111;
+}
+
+.page2-content .services-description {
+  color: #333;
+}
+
 /* Minimal top-right nav */
 .top-nav { position: fixed; right: clamp(12px, 3vw, 32px); top: clamp(12px, 2vh, 24px); z-index: 100; display:flex; gap: 14px; align-items:center; }
-.top-nav a { text-decoration:none; color:#111; font-weight:600; padding: 6px 8px; border-radius: 8px; }
-.top-nav a:hover { background:#111; color:#fff; }
+.top-nav .nav-menu { display: flex; gap: 14px; align-items: center; }
+.top-nav a { 
+  text-decoration:none; 
+  color:#d47300; 
+  font-weight:600; 
+  padding: 6px 12px; 
+  border-radius: 8px;
+  text-transform: uppercase;
+  border: none; /* Geen kader */
+  font-size: 0.7em;
+  letter-spacing: 0.05em;
+  width: 90px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: nav-fade-in 800ms ease-out 1 both;
+}
+.top-nav .nav-menu a:nth-child(1) { animation-delay: 3350ms; } /* Home */
+.top-nav .nav-menu a:nth-child(2) { animation-delay: 3450ms; } /* Expertise */
+.top-nav .nav-menu a:nth-child(3) { animation-delay: 3550ms; } /* About */
+.top-nav .nav-menu a:nth-child(4) { animation-delay: 3650ms; } /* Contact */
+/* Hamburger menu button */
+.hamburger {
+  display: none; /* Verborgen op desktop */
+  background: none;
+  border: none; /* Geen kader */
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 101;
+  position: relative;
+}
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: #111;
+  transition: all 0.3s ease;
+  display: block;
+}
+.hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+.hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+.top-nav a:hover { 
+  background:#d47300; 
+  color:#fff; 
+}
+
+/* Witte navigatie knoppen voor donkere achtergronden (grijs en oranje) */
+.top-nav.on-dark a {
+  color: #d47300 !important;
+}
+
+.top-nav.on-dark a:hover {
+  background: #d47300;
+  color: #fff;
+}
+
+.top-nav.on-dark .hamburger span {
+  background: #fff;
+}
+
+.top-nav.on-orange a {
+  color: #fff !important;
+}
+
+.top-nav.on-orange a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.top-nav.on-orange .hamburger span {
+  background: #fff;
+}
 
 /* Hero */
 .hero{
-  min-height: 100svh;
+  min-height: 100vh; /* fallback voor oudere browsers */
+  min-height: 100svh; /* small viewport height voor moderne browsers */
+  position: relative;
   display: grid;
   place-content: center;
   padding-block: clamp(24px,5vh,80px);
@@ -52,38 +209,102 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hero-overlay { position:absolute; inset:0; pointer-events:none; }
 
 .hero-content{
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   gap: 12px;
 }
 
-/* Logo groter + responsive */
-#logo{
-  display:grid;
-  line-height:0;
+/* Logo specifiek: zelfde centering als test sectie - GPU accelerated */
+#logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: logo-fly-in 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0ms 1 forwards;
+  overflow: visible; /* Laat punt buiten container bewegen */
+  position: relative;
+  z-index: 1; /* Zorg dat logo zichtbaar blijft boven overlay */
+  will-change: transform, opacity; /* GPU acceleration voor betere performance */
+  transform: translateZ(0); /* Force hardware acceleration */
 }
 
-#logo svg{
-  display:block;
-  width: clamp(320px, 40vw, 900px);
-  height:auto;
+/* Logo 20% kleiner gemaakt - donkergrijs */
+#logo svg,
+#logo img {
+  display: block;
+  width: clamp(416px, 54vw, 1040px);
+  height: auto;
+  overflow: visible; /* Laat punt buiten viewBox bewegen */
+}
+
+/* Logo SVG elementen donkergrijs maken */
+#logo svg * {
+  fill: #333 !important;
+}
+
+/* Safari-only nudge to keep texts perfectly under the logo */
+@supports (-webkit-touch-callout: none) {
+  .hero-subtitle,
+  .hero-description {
+    margin-left: 0; /* whitespace weg → standaard centreren */
+    text-align: center;
+  }
 }
 
 /* Belangrijk voor juiste rotatie en scale */
 svg * { transform-box: fill-box; transform-origin: center; }
 
-/* Hero teksten */
+/* Animaties alleen starten als svg .run-anim heeft (na crop) */
+#logo svg:not(.run-anim) #_x23_Letter_x5F_x5F_x5F_E,
+#logo svg:not(.run-anim) #_x23_Letter_x5F_x5F_x5F_Punt {
+  animation: none !important;
+  transform: none !important; /* zodat de crop op 'rust' kan gebeuren */
+}
+
+/* Hero teksten - donkergrijs */
 .hero-subtitle{
-  font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-  font-size: clamp(12px, 1.6vw, 16px); color:#111; margin:0;
+  font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase;
+  font-size: clamp(11px, 1.45vw, 15px); color: #333; margin:0;
+  text-align: center;
+  margin-left: 0;
+}
+
+.hero-subtitle span {
+  display: inline-block;
+  opacity: 0;
+  animation: text-fade-in 600ms ease-out 1 both;
+}
+
+.hero-subtitle .hero-word-1 {
+  animation-delay: 2450ms;
+}
+
+.hero-subtitle .hero-word-2 {
+  animation-delay: 3350ms;
+}
+
+.hero-subtitle .hero-word-3 {
+  animation-delay: 4050ms;
 }
 .hero-description{
-  font-weight: 400; font-size: clamp(14px, 1.8vw, 18px); color:#555; margin:0;
+  font-weight: 300; 
+  font-size: clamp(13px, 1.6vw, 17px); 
+  color: #333; 
+  margin:0;
+  opacity: 0;
+  animation: text-fade-in 600ms ease-out 2750ms 1 both;
+  text-align: center;
+  margin-left: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
-/* Slogan dichter tegen logo aan */
-.hero-subtitle { margin-top: -10px; }
-.hero-description { margin-top: -6px; }
+/* Tekstafstand onder logo - 2x meer ruimte tussen logo en teksten */
+.hero-subtitle { margin-top: 64px; }
+.hero-subtitle span { margin-right: 0.5em; }
+.hero-description { margin-top: 10px; }
 
 /* Hero buttons als vervanging van top navigatie */
 .hero-buttons { display:flex; gap: 12px; justify-content:center; flex-wrap: wrap; margin-top: 8px; }
@@ -91,7 +312,17 @@ svg * { transform-box: fill-box; transform-origin: center; }
 .hero-button:hover { background:#111; color:#fff; }
 
 /* Scroll indicator */
-.scroll-indicator{ position:absolute; left:50%; bottom: clamp(80px, 20vh, 160px); transform: translateX(-50%); text-align:center; color:#777; font-size:12px; }
+.scroll-indicator{ 
+  position:absolute; 
+  left:50%; 
+  bottom: clamp(40px, 10vh, 80px); 
+  transform: translateX(-50%); 
+  text-align:center; 
+  color:#777; 
+  font-size:12px;
+  opacity: 0;
+  animation: scroll-fade-in 600ms ease-out 4650ms 1 both;
+}
 .scroll-indicator .mouse{ width:24px; height:36px; border:2px solid #bbb; border-radius:16px; margin:0 auto 6px; position:relative; }
 .scroll-indicator .wheel{ width:2px; height:8px; background:#bbb; border-radius:2px; position:absolute; left:50%; top:6px; transform:translateX(-50%); animation: wheel 1.2s ease-in-out infinite; }
 @keyframes wheel{ 0%{opacity:0; transform:translate(-50%,0)} 50%{opacity:.9} 100%{opacity:0; transform:translate(-50%,10px)} }
@@ -100,84 +331,584 @@ svg * { transform-box: fill-box; transform-origin: center; }
 .section-header { text-align:center; margin-bottom: 24px; }
 .section-title { font-size: clamp(22px, 3vw, 36px); margin: 0 0 8px 0; }
 .title-underline { width: 60px; height: 3px; background:#111; margin: 0 auto; border-radius: 3px; }
-.about { padding: clamp(32px, 6vw, 96px) 0; }
-.about-content { display:grid; grid-template-columns: 1.2fr 1fr; gap: clamp(16px, 4vw, 48px); align-items:center; }
-.about-text h3 { margin-top:0; }
-.about-features { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; margin-top: 16px; }
-.feature-item { background:#f7f7f7; border:1px solid #eee; border-radius: 12px; padding: 14px; }
-.feature-icon { font-size: 20px; }
+.section-description {
+  max-width: 800px;
+  margin: 16px auto 0;
+  font-size: clamp(14px, 1.5vw, 18px);
+  line-height: 1.6;
+  color: #333;
+}
+/* About Section - Effen grijs gradient naar wit, zonder strepen */
+.about-section { 
+  position: relative;
+  padding: clamp(16px, 3vw, 48px) 0 clamp(48px, 8vw, 96px) 0 !important; 
+  background: #e0e0e0 !important;
+  background-image: linear-gradient(180deg, #e0e0e0 0%, #ffffff 100%) !important;
+  overflow: visible;
+  min-height: 50vh;
+  width: 100%;
+  z-index: 1;
+}
+
+.about-section-overlay {
+  display: none;
+}
+
+.about-section .container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - clamp(80px, 12vw, 120px));
+}
+
+/* About Content */
+.about-content {
+  width: 100%;
+}
+
+.about-title {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 400;
+  color: #111;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.about-title-line {
+  width: 120px;
+  height: 2px;
+  background: #d47300;
+  margin-bottom: clamp(12px, 2vw, 16px);
+  box-shadow: 0 0 2px rgba(212, 115, 0, 0.5);
+}
+
+.about-text {
+  font-size: clamp(13px, 1.4vw, 15px);
+  color: #333;
+  line-height: 1.8;
+  margin: 0 0 clamp(6px, 1vw, 9px) 0;
+  text-align: left;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+}
+
+.about-text:last-of-type {
+  margin-bottom: 0;
+}
+
+.about-photo-container {
+  width: 100%;
+  margin: clamp(32px, 5vw, 48px) 0 0 0;
+  text-align: center;
+  height: clamp(250px, 30vw, 400px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 1px solid #d47300;
+  border-radius: 8px;
+  padding: 0;
+}
+
+.about-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  display: block;
+  filter: grayscale(100%) contrast(1.1) brightness(0.9);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect voor foto - alleen op devices met pointer */
+@media (hover: hover) and (pointer: fine) {
+  .about-photo:hover {
+    filter: grayscale(80%) contrast(1.2) brightness(1);
+    transform: scale(1.01);
+  }
+  
+  .contact-item p a:hover {
+    color: #d47300;
+  }
+}
+
+/* Large Photo */
+.about-main-photo {
+  width: 100%;
+  margin-top: clamp(20px, 3vw, 32px);
+  max-height: 50vh;
+  overflow: hidden;
+}
+
+.about-main-photo img {
+  width: 100%;
+  height: 100%;
+  max-height: 50vh;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Removed old About CSS - moved to Services */
+.about-photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 4vw, 40px);
+  margin-bottom: clamp(60px, 8vw, 100px);
+}
+
+.about-photo {
+  aspect-ratio: 4/3;
+  background: #2a2a2a;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Process Section */
+.about-process {
+  margin-top: clamp(60px, 8vw, 100px);
+}
+
+.about-process-title {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 400;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 12px 0;
+  padding-left: 0;
+  text-align: left;
+}
+
+.about-process-title-line {
+  width: 120px;
+  height: 3px;
+  background: #d47300;
+  margin-bottom: clamp(40px, 6vw, 60px);
+}
+
+.about-process-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 40px);
+}
+
+.about-process-card {
+  background: #242424;
+  border: 1px solid rgba(212, 115, 0, 0.3);
+  border-radius: 12px;
+  padding: clamp(32px, 5vw, 48px);
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.about-process-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 115, 0, 0.6);
+}
+
+.about-process-icon-container {
+  width: 64px;
+  height: 64px;
+  background: #d47300;
+  border-radius: 8px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-process-icon-container img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.about-process-card h3 {
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 16px 0;
+}
+
+.about-process-card p {
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: #d0d0d0;
+  line-height: 1.7;
+  margin: 0;
+}
 
 /* Placeholder image block */
 .image-placeholder { display:grid; place-items:center; height: 280px; border:2px dashed #ddd; border-radius: 12px; color:#999; }
 
-/* Services */
-.services { padding: clamp(32px, 6vw, 96px) 0; background:#fafafa; border-top:1px solid #f0f0f0; }
-.services-grid { display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: clamp(16px, 2.5vw, 28px); }
-.service-card { background:#fff; border:1px solid #eee; border-radius: 14px; padding: 18px; }
-.service-icon { font-size: 22px; }
+/* Services / Expertise */
+.services { 
+  position: relative;
+  padding: clamp(16px, 3vw, 48px) 0 !important; 
+  background: #ffffff !important;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      #ffffff,
+      #ffffff 29px,
+      #d0d0d0 29px,
+      #d0d0d0 30px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #ffffff,
+      #ffffff 29px,
+      #d0d0d0 29px,
+      #d0d0d0 30px
+    ) !important;
+  background-size: 30px 30px !important;
+  overflow: visible;
+  min-height: 50vh;
+  width: 100%;
+  z-index: 1;
+}
+.services-header { margin-bottom: clamp(20px, 3vw, 30px); }
+.services-title { font-size: clamp(28px, 4vw, 36px); font-weight: 400; color: #111; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 12px 0; }
+.services-title-line { width: 120px; height: 2px; background: #d47300; margin-bottom: clamp(12px, 2vw, 16px); }
+.services-description { 
+  font-size: clamp(13px, 1.4vw, 15px); 
+  color: #444; 
+  line-height: 1.8; 
+  margin: 0 0 clamp(6px, 1vw, 9px) 0; 
+  text-transform: none;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+}
+
+.services-description:last-of-type {
+  margin-bottom: 0;
+}
+
+.services-choose-path {
+  font-size: clamp(16px, 1.8vw, 20px);
+  color: #444;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-align: center;
+  margin: clamp(32px, 5vw, 48px) auto 0;
+  width: 100%;
+}
+
+/* Process Section (moved from About with orange background) */
+.services-process {
+  margin-top: clamp(40px, 6vw, 60px);
+  width: 100%;
+}
+
+.services-process-title {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 400;
+  color: #111;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 12px 0;
+  text-align: left;
+}
+
+.services-process-title-line {
+  width: 120px;
+  height: 3px;
+  background: #d47300;
+  margin-bottom: clamp(40px, 6vw, 60px);
+}
+
+.services-process-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 32px);
+}
+
+@media (max-width: 980px) {
+  .services-process-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 3vw, 28px);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-process-cards {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 4vw, 32px);
+  }
+  
+  .services-process-icon-container {
+    width: clamp(70px, 15vw, 100px);
+    height: clamp(70px, 15vw, 100px);
+  }
+  
+  .services-process-icon-container img {
+    width: clamp(42px, 10vw, 60px);
+    height: clamp(42px, 10vw, 60px);
+  }
+}
+
+.services-process-card {
+  background: linear-gradient(135deg, #2f2f2f 0%, #242424 50%, #2f2f2f 100%);
+  border: 1px solid #d47300;
+  border-radius: 12px;
+  padding: clamp(32px, 5vw, 48px);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effect - alleen op devices met pointer (niet touch) */
+@media (hover: hover) and (pointer: fine) {
+  .services-process-card:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(135deg, #373737 0%, #2c2c2c 50%, #373737 100%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    border-color: #e6891a;
+  }
+  
+  .services-process-card:hover .card-hover-image {
+    opacity: 0.3;
+  }
+}
+
+/* Touch devices: active state in plaats van hover */
+.services-process-card:active {
+  transform: translateY(-2px);
+}
+
+.services-process-card.card-image-active {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #373737 0%, #2c2c2c 50%, #373737 100%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  border-color: #e6891a;
+}
+
+.card-hover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+  border-radius: 12px;
+}
+
+.services-process-card.card-image-active .card-hover-image {
+  opacity: 0.3;
+}
+
+.services-process-card .services-process-icon-container,
+.services-process-card h3,
+.services-process-card p {
+  position: relative;
+  z-index: 1;
+}
+
+.card-request-text {
+  color: #fff;
+  font-size: clamp(11px, 1.2vw, 13px);
+  font-weight: 400;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  margin: 8px 0 0 0;
+  opacity: 0.7;
+  text-align: center;
+}
+
+.services-process-icon-container {
+  width: clamp(80px, 12vw, 120px);
+  height: clamp(80px, 12vw, 120px);
+  background: #3d2817;
+  border-radius: 10px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(80px, 12vw, 120px);
+  border: none;
+}
+
+.services-process-icon-container img {
+  width: clamp(50px, 8vw, 70px);
+  height: clamp(50px, 8vw, 70px);
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  display: block;
+  opacity: 1;
+}
+
+.services-process-card h3 {
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 16px 0;
+}
+
+.services-process-card p {
+  font-size: clamp(12px, 1.3vw, 14px);
+  color: #ffffff;
+  line-height: 1.6;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
 
 /* Contact */
-.contact { padding: clamp(32px, 6vw, 96px) 0; }
-.contact-content { display:grid; grid-template-columns: 1fr 1.2fr; gap: clamp(16px, 4vw, 48px); }
-.contact-item { display:flex; gap:12px; align-items:flex-start; margin-bottom: 12px; }
+.contact { 
+  position: relative;
+  padding: clamp(16px, 3vw, 48px) 0 !important; 
+  background: #fff; 
+  overflow: visible;
+  min-height: 100vh;
+  width: 100%;
+  z-index: 1;
+}
+
+.contact-header { margin-bottom: clamp(20px, 3vw, 30px); }
+.contact-title { font-size: clamp(28px, 4vw, 36px); font-weight: 400; color: #111; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 12px 0; }
+.contact-title-line { width: 120px; height: 2px; background: #d47300; margin-bottom: clamp(12px, 2vw, 16px); }
+.contact-description { 
+  font-size: clamp(13px, 1.4vw, 15px); 
+  color: #666; 
+  line-height: 1.8; 
+  margin: 0 0 clamp(6px, 1vw, 9px) 0; 
+  text-transform: none;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+}
+
+.contact-description:last-of-type {
+  margin-bottom: 0;
+}
+.contact-content { display:grid; grid-template-columns: 1fr 1.2fr; gap: clamp(16px, 4vw, 48px); align-items: start; }
+.contact-item { display:block; margin-bottom: 18px; }
+.contact-item h4 { text-transform: uppercase; font-weight: 600; letter-spacing: 0.06em; margin: 0 0 6px 0; font-size: 12px; color:#111; }
+.contact-item p { text-transform: none; font-weight: 200; letter-spacing: 0.02em; font-size: clamp(13px, 1.4vw, 15px); color:#222; line-height: 1.8; }
+.contact-item p a { color: #222; text-decoration: none; transition: color 0.2s ease; }
 .contact-icon { font-size: 18px; width: 24px; text-align:center; }
 .form-group { margin-bottom:10px; }
-input, textarea { width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font: inherit; }
-.submit-button { padding: 12px 16px; border:0; border-radius: 10px; background:#111; color:#fff; font-weight: 600; cursor:pointer; }
+input, textarea { 
+  width:100%; 
+  padding:12px 14px; 
+  border:1px solid #ddd; 
+  border-radius:10px; 
+  font: inherit; 
+  font-size: 16px; 
+  color: #666;
+}
+input::placeholder, textarea::placeholder {
+  color: #999;
+}
+.submit-button { padding: 12px 18px; border:0; border-radius: 10px; background:#111; color:#fff; font-weight: 500; cursor:pointer; }
 .submit-button:hover { background:#000; }
 
 /* Footer */
-.footer { padding: 40px 0; background:#111; color:#fff; margin-top: 40px; }
-.footer-content { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; width:min(1200px,92vw); margin:0 auto; }
-.footer-section h3, .footer-section h4 { margin-top:0; }
-.footer-section a { color:#ddd; text-decoration:none; }
-.footer-section a:hover { color:#fff; }
-.footer-bottom { border-top:1px solid #2a2a2a; margin-top:16px; padding-top:12px; text-align:center; color:#bbb; font-size: 12px; }
+.footer { padding: 12px 0; background:#111; color:#fff; margin-top: 24px; }
+.footer-bottom { text-align:center; color:#bbb; font-size: 12px; }
+
+/* Logo vliegt eerst van rechts naar links - werkt met flexbox centering */
+@keyframes logo-fly-in {
+  0%   { transform: translateX(100vw); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
 
 /* Animaties voor jouw SVG-groepen (IDs uit je bestand) */
-/* E start op 50°, draait naar 60° wanneer punt op verste punt is, dan schokkend naar 0° */
-#Letter_x5F_E {
-  animation: e-jerk 1400ms cubic-bezier(.15,.9,.1,1) 300ms 1 both;
+/* E start op 50°, draait naar 60° wanneer punt op verste punt is, dan schokkend naar 0° - langzamer */
+#_x23_Letter_x5F_x5F_x5F_E {
+  animation: e-jerk 1700ms cubic-bezier(.15,.9,.1,1) 900ms 1 both;
   transform: rotate(50deg);
+  will-change: transform; /* GPU acceleration */
 }
 
-/* Punt komt binnen van rechts naar links */
-#Letter_x5F_Punt {
-  animation: punt-in 1100ms ease-out 300ms 1 both;
-}
-
-/* TM verschijnt nadat de E klaar is op 0 graden */
-#Letter_x5F_TM {
-  animation: tm-pop 520ms cubic-bezier(.2,1,.2,1) 1700ms 1 both;
+/* Punt komt binnen van rechts naar links - beweegt onafhankelijk over scherm, langer schuiven */
+#_x23_Letter_x5F_x5F_x5F_Punt {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: punt-in 1300ms ease-out 900ms 1 both;
+  will-change: transform, opacity; /* GPU acceleration */
 }
 
 @keyframes e-jerk {
   0%   { transform: rotate(50deg); }
-  55%  { transform: rotate(50deg); } /* Blijft stil tot iets voor punt hem raakt */
-  65%  { transform: rotate(70deg); } /* Draait verder bij raken */
-  70%  { transform: rotate(18deg); }
+  60%  { transform: rotate(50deg); } /* Blijft langer stil, punt heeft meer tijd om te schuiven */
+  70%  { transform: rotate(70deg); } /* Draait verder bij raken */
+  76%  { transform: rotate(18deg); }
   78%  { transform: rotate(-14deg); }
   84%  { transform: rotate(10deg); }
   90%  { transform: rotate(-6deg); }
   94%  { transform: rotate(3.5deg); }
   97%  { transform: rotate(-1.8deg); }
-  99%  { transform: rotate(0.8deg); }
+  98%  { transform: rotate(0.8deg); }
+  99%  { transform: rotate(0.4deg); }
   100% { transform: rotate(0deg); }
 }
 
 @keyframes punt-in {
-  0%   { transform: translateX(180px); opacity: 0; }
-  15%  { transform: translateX(100px); opacity: 1; }
-  50%  { transform: translateX(20px); }
+  0%   { transform: translateX(2000px); opacity: 0; } /* helemaal rechts, ver buiten scherm (pixels relatief aan SVG) */
+  20%  { transform: translateX(1200px); opacity: 1; } /* komt zichtbaar binnen */
+  40%  { transform: translateX(600px); } /* rolt verder naar links */
+  60%  { transform: translateX(200px); } /* nadert logo, langer schuiven */
   78%  { transform: translateX(-18px); } /* overshoot iets naar links */
   90%  { transform: translateX(6px); }
   100% { transform: translateX(0); }
 }
 
-@keyframes tm-pop {
-  0%   { transform: scale(.6); opacity: 0; }
-  60%  { transform: scale(1.06); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes fade-in {
+  0%   { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes text-fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scroll-fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes nav-fade-in {
+  0%   { opacity: 0; transform: translateY(-5px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive */
@@ -186,12 +917,261 @@ input, textarea { width:100%; padding:12px 14px; border:1px solid #ddd; border-r
   .services-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .contact-content { grid-template-columns: 1fr; }
 }
-@media (max-width: 640px){
-  .nav-menu { display:none; }
-  .hamburger { display:block; }
+/* Grote telefoons en kleine tablets */
+@media (min-width: 641px) and (max-width: 768px) {
+  .services-process-cards {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 4vw, 32px);
+  }
+  
+  .services-process-icon-container {
+    width: clamp(90px, 14vw, 120px);
+    height: clamp(90px, 14vw, 120px);
+  }
+  
+  .services-process-icon-container img {
+    width: clamp(55px, 9vw, 75px);
+    height: clamp(55px, 9vw, 75px);
+  }
+}
+
+/* Mobiel - kleine schermen (tot 767px) */
+@media (max-width: 767px){
+  .top-nav {
+    flex-direction: row; /* Hamburger rechts */
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  /* Verberg nav-menu standaard op mobiel - alleen hamburger zichtbaar */
+  .top-nav .nav-menu { 
+    display: none !important; 
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: #fff;
+    border: none; /* Geen kader */
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    min-width: 150px;
+    z-index: 102;
+  }
+  
+  /* Wanneer menu open is */
+  .top-nav .nav-menu[style*="flex"] {
+    display: flex !important;
+  }
+  
+  .nav-menu a {
+    border: none !important; /* Geen kaders in menu */
+    width: auto;
+    min-width: 120px;
+    animation: none;
+    opacity: 1;
+  }
+  
+  .hamburger { 
+    display: flex !important; 
+  }
+  
   .services-grid { grid-template-columns: 1fr; }
-  .hero-content { top: 35vh; }
-  #logo svg { width: clamp(320px, 86vw, 900px); }
+  
+  /* Services responsive voor mobiel */
+  .services-process-cards {
+    grid-template-columns: 1fr !important;
+    gap: clamp(24px, 4vw, 32px) !important;
+  }
+  
+  .services-process-icon-container {
+    width: clamp(85px, 20vw, 120px) !important;
+    height: clamp(85px, 20vw, 120px) !important;
+  }
+  
+  .services-process-icon-container img {
+    width: clamp(50px, 14vw, 70px) !important;
+    height: clamp(50px, 14vw, 70px) !important;
+  }
+  
+  /* Hero fix voor iPhone - geen top positioning */
+  .hero {
+    min-height: 100vh;
+    min-height: -webkit-fill-available; /* iPhone Safari fix */
+    padding-block: clamp(40px, 8vh, 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Logo - animaties op mobiel met fallback voor iPhone */
+  #logo {
+    opacity: 0;
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Eenvoudige fade-in + zeer snelle fallback (500ms) voor iPhone */
+    animation: logo-fade-in-mobile 600ms ease-out 200ms 1 forwards,
+               logo-fade-fallback 200ms ease-out 500ms 1 forwards;
+  }
+  
+  /* Eenvoudige fade-in voor iPhone - geen transform (iPhone Safari kan problemen hebben) */
+  @keyframes logo-fade-in-mobile {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  /* Fallback - zorgt dat logo ALTIJD zichtbaar wordt na 500ms */
+  @keyframes logo-fade-fallback {
+    to { opacity: 1 !important; transform: none !important; }
+  }
+  
+  /* Top nav kleiner voor mobiel */
+  .top-nav { 
+    gap: 8px; 
+    right: clamp(8px, 2vw, 16px); 
+    top: clamp(8px, 2vh, 16px); 
+  }
+  .top-nav a { 
+    width: 70px; 
+    height: 28px; 
+    font-size: 0.65em; 
+    padding: 4px 8px; 
+  }
+  
+  /* Logo 10% kleiner voor mobiel - animaties aan */
+  #logo svg, #logo img { 
+    width: clamp(252px, 76.5vw, 450px) !important; /* 10% kleiner dan 280px */
+    display: block !important;
+  }
+  
+  /* Teksten kleiner voor mobiel - eenvoudige fade-in met snelle fallback */
+  .hero-subtitle { 
+    font-size: clamp(10px, 3vw, 14px) !important;
+    margin-top: 48px;
+  }
+  
+  .hero-subtitle span {
+    opacity: 0;
+    animation: text-fade-in 600ms ease-out 1 both,
+               text-fade-fallback 200ms ease-out 1 forwards;
+  }
+  
+  .hero-subtitle .hero-word-1 {
+    animation-delay: 1200ms, 2000ms;
+  }
+  
+  .hero-subtitle .hero-word-2 {
+    animation-delay: 2000ms, 2800ms;
+  }
+  
+  .hero-subtitle .hero-word-3 {
+    animation-delay: 2800ms, 3600ms;
+  }
+  .hero-description { 
+    font-size: clamp(12px, 3.5vw, 16px) !important;
+    opacity: 0;
+    animation: text-fade-in 600ms ease-out 1500ms 1 both,
+               text-fade-fallback 200ms ease-out 2300ms 1 forwards;
+  }
+  
+  /* Fallback animatie voor teksten - zorgt dat ze altijd zichtbaar worden */
+  @keyframes text-fade-fallback {
+    to { opacity: 1 !important; }
+  }
+  
+  /* Forceer SVG animaties op mobiel - ook zonder run-anim class voor iPhone */
+  #logo svg.run-anim #_x23_Letter_x5F_x5F_x5F_E,
+  #logo svg #_x23_Letter_x5F_x5F_x5F_E {
+    animation: e-jerk 1700ms cubic-bezier(.15,.9,.1,1) 900ms 1 both !important;
+    transform: rotate(50deg);
+  }
+  #logo svg.run-anim #_x23_Letter_x5F_x5F_x5F_Punt,
+  #logo svg #_x23_Letter_x5F_x5F_x5F_Punt {
+    animation: punt-in 1300ms ease-out 900ms 1 both !important;
+  }
+  
+  /* About sectie op mobiel */
+  .about-section {
+    padding-top: clamp(80px, 15vh, 120px) !important;
+    padding-bottom: clamp(60px, 10vh, 80px) !important;
+  }
+  
+  .about-photos {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-process-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Punt animatie aanpassen voor mobiel - kleinere beweging */
+  @keyframes punt-in {
+    0%   { transform: translateX(1500px); opacity: 0; }
+    20%  { transform: translateX(800px); opacity: 1; }
+    40%  { transform: translateX(400px); }
+    60%  { transform: translateX(150px); }
+    78%  { transform: translateX(-12px); }
+    90%  { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+  }
+  
+  /* Scroll indicator kleiner op mobiel */
+  .scroll-indicator { 
+    bottom: clamp(20px, 5vh, 40px); 
+    font-size: 11px; 
+  }
+  
+  :root { --logo-nudge: 0px; }
+}
+
+/* Tablet / iPad specifiek (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root { --logo-nudge: 0px; }
+  
+  /* Logo medium size voor tablet */
+  #logo svg, #logo img { 
+    width: clamp(450px, 60vw, 900px); 
+  }
+  
+  /* Teksten medium size */
+  .hero-subtitle { 
+    font-size: clamp(11px, 2vw, 15px); 
+  }
+  .hero-description { 
+    font-size: clamp(13px, 2.2vw, 17px); 
+  }
+  
+  /* Expertise cards: 2 kolommen op iPad */
+  .services-process-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 3vw, 28px);
+  }
+  
+  /* Contact form: 2 kolommen op iPad */
+  .contact-content {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  :root { --logo-nudge: 0px; }
+  
+  /* Logo normaal formaat voor desktop (standaard al goed ingesteld) */
+  #logo svg, #logo img { 
+    width: clamp(416px, 54vw, 1040px); 
+  }
 }
 
 /* Respect reduced motion preferences */

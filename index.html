@@ -2,25 +2,23 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <meta name="description" content="Protocore - Rapid Prototyping voor Industrie. Van idee naar werkend prototype." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- Cache headers verwijderd voor productie - gebruik server-side caching -->
+  <meta name="description" content="Protocore - Rapid Prototyping for Industry. From idea to working prototype." />
   <meta name="theme-color" content="#111111" />
-  <title>Protocore - Rapid Prototyping voor Industrie</title>
+  <title>Protocore - Rapid Prototyping for Industry</title>
 
-  <!-- Fonts -->
+  <!-- Fonts - optimized for mobile -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=optional" rel="stylesheet" />
 
   <!-- Assets -->
   <link rel="icon" href="images/ProtoCore.svg" type="image/svg+xml" />
   <link rel="preload" as="image" href="images/ProtoCore.svg" type="image/svg+xml" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="style.css?v=12" />
+  <link rel="stylesheet" href="style.css?v=135" />
 </head>
 <body>
   <a class="skip-link" href="#home">Direct naar inhoud</a>
@@ -28,10 +26,19 @@
 
   <!-- Top-right minimal nav -->
   <nav class="top-nav" aria-label="Hoofdnavigatie">
-    <a href="#home">Home</a>
-    <a href="#about">Over ons</a>
-    <a href="#services">Diensten</a>
-    <a href="#contact">Contact</a>
+    <!-- Hamburger menu voor mobiel -->
+    <button id="hamburger" class="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <!-- Desktop nav links -->
+    <div class="nav-menu" id="nav-menu">
+      <a href="#home">HOME</a>
+      <a href="#expertise">EXPERTISE</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
+    </div>
   </nav>
 
   <!-- Hero -->
@@ -39,15 +46,18 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <h1 class="visually-hidden">Protocore — Rapid Prototyping voor Industrie</h1>
+      <h1 class="visually-hidden">Protocore — Rapid Prototyping for Industry</h1>
       <!-- Animated SVG Logo (loaded inline by script.js) -->
       <div id="logo" aria-label="ProtoCore logo" role="img"></div>
       <noscript>
         <img src="images/ProtoCore.svg" alt="Protocore logo" width="600" height="200" />
       </noscript>
 
-      <p class="hero-subtitle">RAPID PROTOTYPING FOR INDUSTRY</p>
-      <p class="hero-description">From idea to reality — fast and effective</p>
+      <p class="hero-subtitle">
+        <span class="hero-word-1">SKETCH IT.</span> 
+        <span class="hero-word-2">RENDER IT.</span> 
+        <span class="hero-word-3">BUILD IT.</span>
+      </p>
 
       
     </div>
@@ -58,83 +68,73 @@
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="about">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Over Ons</h2>
-        <div class="title-underline"></div>
+  <!-- Expertise - Page 2 -->
+  <section id="expertise" class="page2-section">
+    <div class="page2-overlay"></div>
+    <div class="page2-content container">
+      <div class="services-header">
+        <h2 class="services-title">EXPERTISE</h2>
+        <div class="services-title-line"></div>
+        <p class="services-description">
+          At Protocore, we help turn ideas into real, working products.
+        </p>
+        <p class="services-description" style="margin-top: 8px;">
+          Whether you're starting from a rough sketch, improving an existing concept, or ready to build a functional prototype — we make it happen.
+        </p>
+        <p class="services-choose-path">CHOOSE YOUR PATH</p>
       </div>
 
-      <div class="about-content">
-        <div class="about-text">
-          <h3>We maken gedurfde ideeën werkelijkheid — snel.</h3>
-          <p>
-            Bij Protocore bouwen en testen we prototypes in een vroeg stadium om jouw concept te valideren,
-            gebruikersfeedback te verzamelen en ontwerpuitdagingen op te lossen voordat de productie begint.
-          </p>
-          <p>
-            Van 3D-geprinte modellen tot functionele systemen: ons <strong>rapid prototyping</strong> proces
-            helpt je slimmer te innoveren, risico's te verminderen en met vertrouwen vooruit te gaan.
-          </p>
-
-          <div class="about-features">
-            <div class="feature-item">
-              <div class="feature-icon">⚡</div>
-              <h4>Snel</h4>
-              <p>Van concept tot prototype in recordtijd</p>
+      <!-- Process Section -->
+      <div class="services-process">
+        <div class="services-process-cards">
+          <div class="services-process-card" data-hover-image="images/Expertise/sketch-it.jpg">
+            <div class="card-hover-image"></div>
+            <div class="services-process-icon-container">
+              <img src="images/ProtoCore-07.png" alt="Sketch it icon" />
             </div>
-            <div class="feature-item">
-              <div class="feature-icon">🎯</div>
-              <h4>Precies</h4>
-              <p>Elk detail getest en gevalideerd</p>
-            </div>
-            <div class="feature-item">
-              <div class="feature-icon">🚀</div>
-              <h4>Innovatief</h4>
-              <p>Geavanceerde technieken en materialen</p>
-            </div>
+            <h3>SKETCH IT</h3>
+            <p class="card-request-text">click for request</p>
           </div>
-        </div>
 
-        <div class="about-image">
-          <div class="image-placeholder"><p>Afbeelding<br/>komt hier</p></div>
+          <div class="services-process-card" data-hover-image="images/Expertise/render-it.jpeg">
+            <div class="card-hover-image"></div>
+            <div class="services-process-icon-container">
+              <img src="images/ProtoCore-08.png" alt="Render it icon" />
+            </div>
+            <h3>RENDER IT</h3>
+            <p class="card-request-text">click for request</p>
+          </div>
+
+          <div class="services-process-card" data-hover-image="images/Expertise/build-it.webp">
+            <div class="card-hover-image"></div>
+            <div class="services-process-icon-container">
+              <img src="images/ProtoCore-06.png" alt="Build it icon" />
+            </div>
+            <h3>BUILD IT</h3>
+            <p class="card-request-text">click for request</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services -->
-  <section id="services" class="services">
+  <!-- About -->
+  <section id="about" class="about-section">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Onze Diensten</h2>
-        <div class="title-underline"></div>
-        <p class="section-description">
-          We begeleiden ideeën van ruwe schets tot geteste oplossing — snel en hands-on.
+      <div class="about-content">
+        <h1 class="about-title">ABOUT</h1>
+        <div class="about-title-line"></div>
+        <p class="about-text">
+          Protocore is a rapid-prototyping studio based in Leeuwarden. We turn ideas into real, functional products — fast.
         </p>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🔍</div>
-          <h3>Research</h3>
-          <p>Probleem scherp krijgen, doelen bepalen en context in kaart brengen.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">💡</div>
-          <h3>Concept & Design</h3>
-          <p>Van schetsen en renders naar een helder concept en plan van aanpak.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🛠️</div>
-          <h3>Prototyping</h3>
-          <p>We bouwen functionele prototypes met passende materialen en technieken.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">✅</div>
-          <h3>Testing</h3>
-          <p>Gerichte testen → itereren → verbeteren tot het klopt en future-proof is.</p>
+        <p class="about-text">
+          With in-house capabilities including FDM and resin 3D printing, CNC routing, electronics development, and mechanical assembly, we build and test physical prototypes from first sketch to working result.
+        </p>
+        <p class="about-text">
+          Whether you're exploring a new concept, improving an existing product, or ready to build and iterate, Protocore provides the tools, engineering, and hands-on experience to make it real.
+        </p>
+        <div class="about-photo-container">
+          <img src="images/Images/About Us/About.jpeg" alt="Protocore workspace" class="about-photo" />
         </div>
       </div>
     </div>
@@ -143,44 +143,45 @@
   <!-- Contact -->
   <section id="contact" class="contact">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Contact</h2>
-        <div class="title-underline"></div>
-        <p class="section-description">Klaar om je idee werkelijkheid te maken? Neem contact op!</p>
+      <div class="contact-header">
+        <h2 class="contact-title">CONTACT</h2>
+        <div class="contact-title-line"></div>
+        <p class="contact-description">
+          Let's build what's next. Get in touch for projects or questions.
+        </p>
       </div>
 
       <div class="contact-content">
         <div class="contact-info">
           <div class="contact-item">
-            <div class="contact-icon">📍</div>
-            <div>
-              <h4>Adres</h4>
-              <p>James Wattstraat 4<br/>8912 AR Leeuwarden<br/>Nederland</p>
-            </div>
+            <h4>Address</h4>
+            <p>James Wattstraat 4 - Unit G26<br/>8912 AR Leeuwarden</p>
           </div>
           <div class="contact-item">
-            <div class="contact-icon">📞</div>
-            <div>
-              <h4>Telefoon</h4>
-              <p><a href="tel:+31622497591">+31 6 22497591</a></p>
-            </div>
+            <h4>Phone</h4>
+            <p><a href="tel:+31622497591">0031-622497591</a></p>
           </div>
           <div class="contact-item">
-            <div class="contact-icon">✉️</div>
-            <div>
-              <h4>Email</h4>
-              <p><a href="mailto:info@protocore.nl">info@protocore.nl</a></p>
-            </div>
+            <h4>Email</h4>
+            <p><a href="mailto:info@protocore.nl">info@protocore.nl</a></p>
           </div>
         </div>
 
         <div class="contact-form">
-          <form id="contactForm">
-            <div class="form-group"><input type="text" id="name" name="name" placeholder="Naam" required /></div>
-            <div class="form-group"><input type="email" id="email" name="email" placeholder="Email" required /></div>
-            <div class="form-group"><input type="tel" id="phone" name="phone" placeholder="Telefoon (optioneel)" /></div>
-            <div class="form-group"><textarea id="message" name="message" rows="5" placeholder="Vertel ons over je project..." required></textarea></div>
-            <button type="submit" class="submit-button">Verstuur Bericht</button>
+          <form id="contactForm" action="contact-form.php" method="POST">
+            <div class="form-group">
+              <input type="text" id="name" name="name" placeholder="Name" required />
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" name="email" placeholder="Email" required />
+            </div>
+            <div class="form-group">
+              <input type="text" id="subject" name="subject" placeholder="Subject" required />
+            </div>
+            <div class="form-group">
+              <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Send</button>
           </form>
         </div>
       </div>
@@ -190,29 +191,10 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>PROTOCORE</h3>
-          <p>Rapid Prototyping voor Industrie</p>
-        </div>
-        <div class="footer-section">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">Over Ons</a></li>
-            <li><a href="#services">Diensten</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Contact</h4>
-          <p>James Wattstraat 4<br/>8912 AR Leeuwarden</p>
-          <p><a href="mailto:info@protocore.nl">info@protocore.nl</a></p>
-        </div>
-      </div>
+      
       <div class="footer-bottom">
-        <p>&copy; 2025 Protocore. Handelsnaam van Plantenga Holding B.V. Alle rechten voorbehouden.</p>
-        <p class="disclaimer">Aan de verstrekte informatie kunnen geen rechten worden ontleend.</p>
+        <p>&copy; 2025 Protocore. Trade name of Plantenga Holding B.V. All rights reserved.</p>
+        <p class="disclaimer">No rights can be derived from the information provided.</p>
       </div>
     </div>
   </footer>

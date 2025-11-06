@@ -20,12 +20,14 @@ function setupMobileNav() {
     isOpen = true;
     menu.classList.add('is-open');
     burger.setAttribute('aria-expanded', 'true');
+    document.documentElement.classList.add('no-scroll');
     document.body.classList.add('no-scroll');
   };
   const closeMenu = () => {
     isOpen = false;
     menu.classList.remove('is-open');
     burger.setAttribute('aria-expanded', 'false');
+    document.documentElement.classList.remove('no-scroll');
     document.body.classList.remove('no-scroll');
   };
 
@@ -51,6 +53,7 @@ function setupMobileNav() {
       isOpen = false;
       menu.classList.remove('is-open');
       burger.setAttribute('aria-expanded', 'false');
+      document.documentElement.classList.remove('no-scroll');
       document.body.classList.remove('no-scroll');
     }
   });

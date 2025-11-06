@@ -1631,7 +1631,7 @@ input::placeholder, textarea::placeholder {
 
   /* 2) Kaarten: klein vierkant, minimale padding, geen min-heights */
   .page2-section .services-process .services-process-cards > .services-process-card{
-    height: 38vw !important;          /* ~150px op iPhone */
+    height: 34vw !important;          /* compacter dan 38vw */
     aspect-ratio: auto !important;     /* voorkom conflict met eerdere aspect-ratio */
     min-height: 0 !important;
     width: 100% !important;
@@ -1683,6 +1683,84 @@ input::placeholder, textarea::placeholder {
   .page2-section .services-process .services-process-card.card-image-active .card-hover-image{
     opacity: 1 !important;
     pointer-events: auto !important;
+  }
+}
+
+/* ==== PHONE PAGE-FILL + CONSISTENT GUTTERS + SLOGAN VISIBLE ==== */
+@media (max-width: 640px){
+  :root{ --gutter: clamp(16px, 5vw, 22px); }
+
+  /* Alle hoofdsecties schermvullend met veilige randen (iPhone notch) */
+  section#home.hero,
+  section#expertise.page2-section,
+  section#about.about-section,
+  section#contact.contact{
+    min-height: 100svh !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding: calc(env(safe-area-inset-top) + 12px)
+             var(--gutter)
+             calc(env(safe-area-inset-bottom) + 20px) !important;
+  }
+
+  /* Zorg overal voor gelijke linkse/rechtse witruimte */
+  .container{
+    width: 100% !important;
+    padding-left: var(--gutter) !important;
+    padding-right: var(--gutter) !important;
+  }
+
+  /* Expertise: geen extra margins/padding die overflow geven */
+  .services-header{ margin-left:0 !important; margin-right:0 !important; }
+  .services-process{ margin-top: 12px !important; }
+  .services-process-cards{ padding:0 !important; }
+
+  /* About: netjes centreren als content kort is */
+  .about-section .container{
+    margin: 0 !important;
+  }
+
+  /* Slogan (SKETCH IT / etc.) altijd zichtbaar op phone */
+  .hero-subtitle,
+  .hero-subtitle span{
+    opacity: 1 !important;
+    animation: none !important;
+  }
+
+  /* Hamburger menu staat standaard uit… */
+  .top-nav .nav-menu{ display: none !important; }
+  /* …en bij open is hij zichtbaar als dropdown */
+  .top-nav .nav-menu.is-open{
+    display: flex !important;
+    flex-direction: column;
+    gap: 10px;
+    background:#fff;
+    padding:12px;
+    border-radius:8px;
+    position:absolute;
+    top:48px; right:0;
+    box-shadow:0 8px 24px rgba(0,0,0,.12);
+  }
+
+  /* Scroll blokkeren als menu open is */
+  html.no-scroll, body.no-scroll{ overflow:hidden !important; }
+}
+
+/* Mobile: 2 cards on first row, 3rd centered below */
+@media (max-width: 640px) {
+  .services-process-cards {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    justify-content: center !important;
+  }
+
+  /* 3rd card spans full width but stays centered */
+  .services-process-cards > .services-process-card:nth-child(3) {
+    grid-column: 1 / -1 !important;   /* take whole row */
+    justify-self: center !important;   /* center the card */
+    width: 70% !important;             /* adjust size to taste */
   }
 }
 

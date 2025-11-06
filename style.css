@@ -1106,16 +1106,27 @@ input::placeholder, textarea::placeholder {
     display: block !important;
   }
 
-  /* Hero subtitle: SINGLE DEFINITIVE RULE - always visible, no animation */
+  /* Hero subtitle: 1 voor 1 animatie op mobiel */
   .hero-subtitle {
     font-size: clamp(11px, 2.5vw, 14px) !important;
     margin-top: clamp(24px, 6vh, 40px) !important;
   }
 
-  .hero-subtitle,
   .hero-subtitle span {
-    opacity: 1 !important;
-    animation: none !important;
+    opacity: 0 !important;
+    animation: text-fade-in 600ms ease-out 1 both !important;
+  }
+
+  .hero-subtitle .hero-word-1 {
+    animation-delay: 2450ms !important;
+  }
+
+  .hero-subtitle .hero-word-2 {
+    animation-delay: 3350ms !important;
+  }
+
+  .hero-subtitle .hero-word-3 {
+    animation-delay: 4050ms !important;
   }
 
   .hero-description {
@@ -1320,6 +1331,12 @@ input::placeholder, textarea::placeholder {
     width: 9vw !important;
     height: 9vw !important;
     object-fit: contain !important;
+  }
+
+  /* Click for request: hoger zetten, meer ruimte eronder */
+  .page2-section .services-process .card-request-text {
+    margin-top: 2px !important;
+    margin-bottom: 8px !important;
   }
 
   /* Hover images disabled on mobile */

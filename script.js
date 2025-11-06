@@ -127,6 +127,8 @@ async function loadLogoInline() {
     console.error('Logo load error:', err);
     const fallback = 'images/ProtoCore.svg';
     mount.innerHTML = `<img src="${fallback}" alt="Protocore logo" style="max-width:100%;height:auto;" />`;
+    // Zorg dat hero-ready altijd wordt toegevoegd, ook bij error
+    document.documentElement.classList.add('hero-ready');
   }
 }
 

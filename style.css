@@ -1123,30 +1123,14 @@ input::placeholder, textarea::placeholder {
     display: block !important;
   }
 
-  /* Hero subtitle: 1 voor 1 animatie op mobiel */
+  /* Hero subtitle: font size en margin, maar animatie via .hero-ready */
   .hero-subtitle {
     font-size: clamp(11px, 2.5vw, 14px) !important;
     margin-top: clamp(24px, 6vh, 40px) !important;
     opacity: 1 !important;
   }
-
-  .hero-subtitle span {
-    display: inline-block !important;
-    opacity: 0 !important;
-    animation: text-fade-in 600ms ease-out 1 both !important;
-  }
-
-  .hero-subtitle .hero-word-1 {
-    animation-delay: 600ms !important;
-  }
-
-  .hero-subtitle .hero-word-2 {
-    animation-delay: 1200ms !important;
-  }
-
-  .hero-subtitle .hero-word-3 {
-    animation-delay: 1800ms !important;
-  }
+  
+  /* Oude animatie regels verwijderd - nu via .hero-ready onderaan */
 
   .hero-description {
     font-size: clamp(12px, 3.5vw, 16px) !important;
@@ -1261,7 +1245,20 @@ input::placeholder, textarea::placeholder {
   .services-header,
   .services-process {
     width: 100%;
-    margin-inline: 0;
+    margin-inline: 0 !important;
+    padding-inline: 0 !important;
+  }
+  
+  /* Zorg dat cards grid exact dezelfde padding heeft als de tekst */
+  .page2-section .services-process .services-process-cards {
+    padding-inline: 0 !important;
+    margin-inline: 0 !important;
+  }
+  
+  /* Reset alle mogelijke extra padding/margin die uitlijning kan verstoren */
+  .page2-section .services-header *,
+  .page2-section .services-process * {
+    max-width: 100%;
   }
 
   /* Page2/Expertise section: full screen with aligned text width */
@@ -1354,6 +1351,7 @@ input::placeholder, textarea::placeholder {
     gap: 12px !important;
     width: 100% !important;
     margin: 0 !important;
+    padding-inline: 0 !important;
   }
 
   .page2-section .services-process .services-process-card {
@@ -1530,11 +1528,18 @@ input::placeholder, textarea::placeholder {
 
 /* voorkom dat andere mobile rules dit overschrijven */
 @media (max-width:640px){
-  .hero-subtitle span{ opacity:0 !important; }
-  .hero-ready .hero-subtitle .hero-word-1,
-  .hero-ready .hero-subtitle .hero-word-2,
+  .hero-subtitle span{ 
+    opacity:0 !important; 
+    animation: none !important; /* Reset oude animaties */
+  }
+  .hero-ready .hero-subtitle .hero-word-1{
+    animation: text-fade-in 600ms ease-out 0.6s both !important;
+  }
+  .hero-ready .hero-subtitle .hero-word-2{
+    animation: text-fade-in 600ms ease-out 1.2s both !important;
+  }
   .hero-ready .hero-subtitle .hero-word-3{
-    animation-fill-mode: both !important;
+    animation: text-fade-in 600ms ease-out 1.8s both !important;
   }
 }
 

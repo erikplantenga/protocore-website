@@ -718,7 +718,8 @@ svg * { transform-box: fill-box; transform-origin: center; }
     width: clamp(40px, 10vw, 50px) !important;
     height: clamp(40px, 10vw, 50px) !important;
     margin-bottom: 6px !important;
-    border-radius: 0 !important; /* Vierkante border */
+    border-radius: 8px !important; /* Mooie ronde hoeken */
+    background: #3d2817 !important;
     border: 2px solid #d47300 !important;
     flex-shrink: 0 !important;
     display: flex !important;
@@ -1072,7 +1073,8 @@ input::placeholder, textarea::placeholder {
     width: clamp(40px, 10vw, 50px) !important;
     height: clamp(40px, 10vw, 50px) !important;
     margin-bottom: 6px !important;
-    border-radius: 0 !important; /* Vierkante border */
+    border-radius: 8px !important; /* Mooie ronde hoeken */
+    background: #3d2817 !important;
     border: 2px solid #d47300 !important;
     flex-shrink: 0 !important;
     display: flex !important;

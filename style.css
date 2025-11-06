@@ -809,6 +809,7 @@ svg * { transform-box: fill-box; transform-origin: center; }
   opacity: 0.3;
 }
 
+.services-process-card .card-inner,
 .services-process-card .services-process-icon-container,
 .services-process-card h3,
 .services-process-card p {
@@ -1465,10 +1466,224 @@ input::placeholder, textarea::placeholder {
   }
 }
 
+/* ===== Mobile (≤640px): simpeler layout, geen sticky, kleinere boxen ===== */
+@media (max-width: 640px) {
+  /* 1) Geen sticky op mobiel */
+  .top-nav,
+  .sticky,
+  [data-sticky="true"] {
+    position: static !important;
+    top: auto !important;
+  }
+
+  /* 2) Navigatie zichtbaarheidslogica via class i.p.v. inline styles */
+  #nav-menu { display: none; }
+  #nav-menu.is-open {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .no-scroll { overflow: hidden; touch-action: none; }
+
+  /* 3) Boxen/kaarten kleiner */
+  .card,
+  .feature-box,
+  .info-box {
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+  }
+  .services-grid,
+  .cards-grid,
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 kolom op mobiel */
+    gap: 14px;
+  }
+  .card h3,
+  .feature-box h3 {
+    font-size: 1.05rem;
+    margin: 0 0 8px;
+  }
+  .card p,
+  .feature-box p {
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+
+  /* Expertise-kaarten: vierkant & 2× kleiner op telefoon */
+  .services-process-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 0 12px;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+  @media (max-width: 360px) {
+    .services-process-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .services-process-card {
+    aspect-ratio: 1 / 1;              /* maakt ze vierkant */
+    padding: 12px;                     /* kleiner dan tablet/desktop */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Inner layout center + schaalbare typografie */
+  .services-process-card > * {
+    margin: 0;                         /* reset marges */
+  }
+  .services-process-card .card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Icon/afbeelding schaalt mee */
+  .services-process-card .services-process-icon-container {
+    width: clamp(28px, 18vw, 44px) !important;
+    height: clamp(28px, 18vw, 44px) !important;
+    margin-bottom: 0 !important;
+  }
+  .services-process-card .services-process-icon-container img {
+    width: clamp(20px, 12vw, 32px) !important;
+    height: clamp(20px, 12vw, 32px) !important;
+  }
+
+  /* Titel + tekst schaalbaar en compact */
+  .services-process-card h3 {
+    font-size: clamp(0.9rem, 3.6vw, 1.05rem) !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
+  }
+  .services-process-card p,
+  .services-process-card .card-request-text {
+    font-size: clamp(0.8rem, 3.2vw, 0.95rem) !important;
+    line-height: 1.35 !important;
+    opacity: 0.9;
+    margin: 0 !important;
+  }
+
+  /* 4) Hero/typografie compacter */
+  .hero-title { font-size: clamp(1.35rem, 4.5vw, 1.6rem); }
+  .hero-subtitle { font-size: clamp(1rem, 3.8vw, 1.15rem); }
+  .hero-description { font-size: 0.95rem; }
+
+  /* 5) Buttons en inputs */
+  .btn { padding: 10px 14px; font-size: 0.95rem; }
+  input, select, textarea { font-size: 16px; } /* iOS zoom-prevent */
+
+  /* 6) Hover-image weergave binnen kaarten - netjes binnen vierkant */
+  .services-process-card .card-hover-image {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms ease;
+    z-index: 0;
+  }
+  .services-process-card.card-image-active .card-hover-image {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* 7) Sectiemarges iets kleiner */
+  section { padding: 36px 16px; }
+  .container { padding-left: 16px; padding-right: 16px; }
+}
+
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce){
   * { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
+}
+
+/* ==== PHONE HARD FIX (last wins) ==== */
+@media (max-width: 640px) {
+
+  /* 1) Grid: 2 kolommen, geen max-width beperkingen */
+  .page2-section .services-process .services-process-cards{
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+  }
+
+  /* 2) Kaarten: klein vierkant, minimale padding, geen min-heights */
+  .page2-section .services-process .services-process-cards > .services-process-card{
+    height: 38vw !important;          /* ~150px op iPhone */
+    aspect-ratio: auto !important;     /* voorkom conflict met eerdere aspect-ratio */
+    min-height: 0 !important;
+    width: 100% !important;
+    padding: 10px !important;
+    border-radius: 12px !important;
+    display: grid !important;
+    place-items: center !important;
+    overflow: hidden !important;
+  }
+
+  /* 3) Inhoud compact & gecentreerd */
+  .page2-section .services-process .services-process-card .services-process-icon-container{
+    width: 12vw !important;
+    height: 12vw !important;
+    margin: 0 0 2px 0 !important;
+    border-radius: 10px !important;
+    display: grid !important;
+    place-items: center !important;
+  }
+  .page2-section .services-process .services-process-card .services-process-icon-container img{
+    width: 9vw !important;
+    height: 9vw !important;
+  }
+  .page2-section .services-process .services-process-card h3{
+    font-size: 3.6vw !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+  .page2-section .services-process .services-process-card .card-request-text{
+    font-size: 3.2vw !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+    opacity: .9;
+  }
+
+  /* 4) Hover-foto netjes binnen het vierkant (optioneel bij tap) */
+  .page2-section .services-process .services-process-card .card-hover-image{
+    position: absolute !important;
+    inset: 0 !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: inherit !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 200ms ease !important;
+    z-index: 0 !important;
+  }
+  .page2-section .services-process .services-process-card.card-image-active .card-hover-image{
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
 }
 
 

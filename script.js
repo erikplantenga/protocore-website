@@ -12,60 +12,46 @@ function setupMobileNav() {
   const burger = document.getElementById('hamburger');
   const menu = document.getElementById('nav-menu');
   if (!burger || !menu) return;
-  const isMobile = () => window.innerWidth <= 640;
+
+  let isOpen = false;
+  const isMobile = () => window.matchMedia('(max-width: 640px)').matches;
 
   const openMenu = () => {
-    menu.style.display = 'flex';
-    menu.style.setProperty('flex-direction', 'column', 'important');
-    menu.style.setProperty('gap', '12px', 'important');
+    isOpen = true;
+    menu.classList.add('is-open');
     burger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('no-scroll');
   };
-
   const closeMenu = () => {
-    menu.style.display = 'none';
-    menu.style.setProperty('display', 'none', 'important');
+    isOpen = false;
+    menu.classList.remove('is-open');
     burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('no-scroll');
   };
 
-  // Toggle (hamburger becomes X via CSS). Tapping again closes.
-  burger.addEventListener('click', () => {
-    const currentlyOpen = menu.style.display === 'flex';
-    if (currentlyOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-  
-  // Menu sluit direct na klikken op een link (alleen op mobiel)
-  // Op desktop blijft menu altijd zichtbaar (fixed position)
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      // Alleen op mobiel: sluit menu direct na klik
-      if (isMobile()) {
-        closeMenu();
-      }
-      // Op desktop blijft menu gewoon zichtbaar (fixed position zorgt hiervoor)
-    });
+  burger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    isOpen ? closeMenu() : openMenu();
   });
 
-  // Close on outside click (mobile only)
+  // Link klik: sluit alleen op mobiel
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { if (isMobile()) closeMenu(); });
+  });
+
+  // Outside click
   document.addEventListener('click', (evt) => {
-    if (!isMobile()) return;
-    const target = evt.target;
-    const clickInsideMenu = menu.contains(target);
-    const clickOnBurger = burger.contains(target);
-    const isOpenNow = menu.style.display === 'flex';
-    if (isOpenNow && !clickInsideMenu && !clickOnBurger) {
-      closeMenu();
-    }
-  });
+    if (!isMobile() || !isOpen) return;
+    if (!menu.contains(evt.target) && !burger.contains(evt.target)) closeMenu();
+  }, { capture: true });
 
-  // Close on Escape (mobile only)
-  document.addEventListener('keydown', (evt) => {
-    if (!isMobile()) return;
-    if (evt.key === 'Escape') {
-      closeMenu();
+  // Reset bij resize
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      isOpen = false;
+      menu.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('no-scroll');
     }
   });
 }
@@ -139,37 +125,29 @@ function setupContactForm() {
 }
 
 function setupNavScrollEffect() {
+  // Op mobiel willen we GEEN sticky effect/klassewissel
+  const isMobile = () => window.matchMedia('(max-width: 640px)').matches;
+  if (isMobile()) return;
+
   const nav = document.querySelector('.top-nav');
-  const expertiseSection = document.getElementById('expertise');
   const aboutSection = document.getElementById('about');
-  const servicesSection = document.getElementById('services');
   if (!nav) return;
 
-  function updateNavColor() {
-    // Reset all classes
+  const updateNavColor = () => {
     nav.classList.remove('on-dark', 'on-orange');
-    
     const navRect = nav.getBoundingClientRect();
     const navCenter = navRect.top + (navRect.height / 2);
-    
-    // Check Expertise section (light background - keep nav dark, don't add on-dark)
-    // Expertise has light background, so navigation stays dark (default)
-    
-    // Check About section (gray background)
     if (aboutSection) {
       const aboutRect = aboutSection.getBoundingClientRect();
       if (navCenter >= aboutRect.top && navCenter <= aboutRect.bottom) {
         nav.classList.add('on-dark');
       }
     }
-    
-    // Check Services/Expertise section (white with gray stripes - keep nav dark, don't add on-orange)
-    // Services has light background, so navigation stays dark (default)
-  }
+  };
 
   window.addEventListener('scroll', updateNavColor);
   window.addEventListener('resize', updateNavColor);
-  updateNavColor(); // Check initial state
+  updateNavColor();
 }
 
 // Strak croppen + gelijke marge - getCTM-aware (inclusief transforms/rotaties)
@@ -256,65 +234,57 @@ function fixLogoTightCrop() {
 function setupHoverImages() {
   const cards = document.querySelectorAll('.services-process-card[data-hover-image]');
   const subjectInput = document.getElementById('subject');
-  
+
+  let activeCard = null;
+  const closeActive = () => {
+    if (activeCard) {
+      activeCard.classList.remove('card-image-active');
+      activeCard = null;
+    }
+  };
+
+  // Buiten klik sluit image
+  document.addEventListener('pointerdown', (e) => {
+    if (!activeCard) return;
+    if (!activeCard.contains(e.target)) closeActive();
+  }, { capture: true });
+
   cards.forEach(card => {
     const imageUrl = card.getAttribute('data-hover-image');
     const hoverImageDiv = card.querySelector('.card-hover-image');
-      const cardTitle = card.querySelector('h3').textContent.trim();
-    let isActive = false;
-    
-    if (imageUrl && hoverImageDiv) {
-      hoverImageDiv.style.backgroundImage = `url(${imageUrl})`;
-      
-      // Touch/click event handler - werkt op alle apparaten
-      const handleCardInteraction = (e) => {
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        const isMobile = window.innerWidth <= 1024;
-        
-        // Op touch devices (iPad, telefoons): toggle image visibility eerst
-        if (isTouchDevice && isMobile) {
-          e.preventDefault();
-          isActive = !isActive;
-          if (isActive) {
-            card.classList.add('card-image-active');
-            return; // Laat gebruiker eerst de foto zien
-          } else {
-            card.classList.remove('card-image-active');
+    const cardTitle = (card.querySelector('h3')?.textContent || '').trim();
+    if (!imageUrl || !hoverImageDiv) return;
+    hoverImageDiv.style.backgroundImage = `url(${imageUrl})`;
+
+    card.addEventListener('pointerup', (e) => {
+      const isMobile = window.matchMedia('(max-width: 640px)').matches;
+      const isTouchish = e.pointerType === 'touch' || navigator.maxTouchPoints > 0;
+
+      if (isMobile && isTouchish) {
+        // 1e tap: toon image, 2e tap: ga naar contact
+        if (activeCard === card) {
+          closeActive();
+          if (subjectInput) subjectInput.value = cardTitle.toUpperCase();
+          const contact = document.getElementById('contact');
+          if (contact) {
+            contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setTimeout(() => document.getElementById('name')?.focus(), 500);
           }
+        } else {
+          closeActive();
+          card.classList.add('card-image-active');
+          activeCard = card;
         }
-        
-        // Vul subject in en scroll naar contact
-        if (subjectInput) {
-          subjectInput.value = cardTitle.toUpperCase();
+      } else {
+        // desktop/tablet: direct naar contact
+        if (subjectInput) subjectInput.value = cardTitle.toUpperCase();
+        const contact = document.getElementById('contact');
+        if (contact) {
+          contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(() => document.getElementById('name')?.focus(), 500);
         }
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-          contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          setTimeout(() => {
-            const nameInput = document.getElementById('name');
-            if (nameInput) nameInput.focus();
-          }, 500);
-        }
-      };
-      
-      // Gebruik zowel touch als click events voor betere compatibiliteit
-      card.addEventListener('click', handleCardInteraction);
-      card.addEventListener('touchend', handleCardInteraction);
-      
-      // Sluit bij klik/touch buiten de card (alleen op touch devices)
-      const handleOutsideClick = (e) => {
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        if (isTouchDevice && window.innerWidth <= 1024) {
-          if (!card.contains(e.target)) {
-            card.classList.remove('card-image-active');
-            isActive = false;
-          }
-        }
-      };
-      
-      document.addEventListener('click', handleOutsideClick);
-      document.addEventListener('touchend', handleOutsideClick);
-    }
+      }
+    }, { passive: true });
   });
 }
 

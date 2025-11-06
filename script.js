@@ -65,7 +65,12 @@ function setupMobileNav() {
   // Outside click
   document.addEventListener('click', (evt) => {
     if (!isMobile() || !isOpen) return;
-    if (!menu.contains(evt.target) && !burger.contains(evt.target)) closeMenu();
+    if (!menu.contains(evt.target) && !burger.contains(evt.target)) {
+      closeMenu();
+      // extra safeguard: lock netjes los
+      document.documentElement.classList.remove('no-scroll');
+      document.body.classList.remove('no-scroll');
+    }
   }, { capture: true });
 
   // Reset bij resize
@@ -104,6 +109,8 @@ async function loadLogoInline() {
     // Animaties direct inschakelen (zonder crop-logica)
     requestAnimationFrame(() => {
       svgEl.classList.add('run-anim');
+      // Start hero-animaties pas als logo staat → iOS doet het dan altijd goed
+      document.documentElement.classList.add('hero-ready');
     });
     
     // Fallback voor iPhone - zorg dat logo en content altijd zichtbaar worden na 1.5s
@@ -113,9 +120,7 @@ async function loadLogoInline() {
         logo.style.opacity = '1';
         logo.style.transform = 'none';
       }
-      const subtitle = document.querySelector('.hero-subtitle');
       const description = document.querySelector('.hero-description');
-      if (subtitle) subtitle.style.opacity = '1';
       if (description) description.style.opacity = '1';
     }, 1500);
   } catch (err) {

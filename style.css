@@ -26,6 +26,14 @@ body {
 :root { 
   --logo-nudge: 0px;           /* GetCTM-based crop is nu exact gecentreerd - geen nudge nodig */
   --text-nudge: 0px;           /* teksten weer standaard centreren */
+  --page-pad: 12px;
+}
+
+/* ====== GLOBAL small helpers ====== */
+/* Lock body scroll when mobile menu is open */
+body.no-scroll {
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Accessibility utilities */
@@ -1036,7 +1044,7 @@ input::placeholder, textarea::placeholder {
     display: none !important;
     position: absolute;
     top: 50px;
-    right: 0;
+    right: var(--page-pad);
     background: #fff;
     border: none;
     border-radius: 8px;
@@ -1173,19 +1181,16 @@ input::placeholder, textarea::placeholder {
     100% { transform: translateX(0); }
   }
 
-  /* About section: full screen with aligned text width */
+  /* ABOUT ook lekker gevuld laten voelen */
   .about-section {
+    min-height: 100svh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
     padding-top: 24px !important;
     padding-bottom: 24px !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    min-height: 100vh !important;
-    min-height: -webkit-fill-available !important;
-    height: 100vh !important;
-    height: -webkit-fill-available !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
   }
 
   /* Reduce side padding for tighter alignment */
@@ -1243,28 +1248,41 @@ input::placeholder, textarea::placeholder {
     grid-template-columns: 1fr;
   }
 
+  /* ====== SECTION WIDTH ALIGNMENT (mobile) ====== */
+  /* Zelfde padding links/rechts voor headings én grid */
+  .page2-section .page2-content,
+  .page2-section .container,
+  .about-section .container,
+  .contact .container {
+    padding-inline: var(--page-pad) !important;
+  }
+
+  /* Zorg dat de tekstbreedte visueel uitlijnt met de grid */
+  .services-header,
+  .services-process {
+    width: 100%;
+    margin-inline: 0;
+  }
+
   /* Page2/Expertise section: full screen with aligned text width */
   .page2-section {
+    min-height: 100svh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
     padding-top: 24px !important;
     padding-bottom: 24px !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    min-height: 100vh !important;
-    min-height: -webkit-fill-available !important;
-    height: 100vh !important;
-    height: -webkit-fill-available !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
   }
 
   /* Reduce side padding for tighter grid alignment */
   .page2-section .container,
   .page2-content {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
+    padding-left: var(--page-pad) !important;
+    padding-right: var(--page-pad) !important;
   }
 
   .page2-content {
@@ -1328,32 +1346,28 @@ input::placeholder, textarea::placeholder {
     justify-content: center !important;
   }
 
-  /* Services process cards: 2-top, 1-middle grid */
+  /* ====== CARDS LAYOUT ====== */
+  /* 2 boven, 1 onder gecentreerd */
   .page2-section .services-process .services-process-cards {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 12px !important;
-    justify-items: center !important;
     width: 100% !important;
-    max-width: 100% !important;
     margin: 0 !important;
-    padding: 0 12px !important;
   }
 
   .page2-section .services-process .services-process-card {
     width: 100% !important;
-    height: 38vw !important;
-    aspect-ratio: auto !important;
-    padding: 10px !important;
+    padding: 12px !important;
     border-radius: 12px !important;
     display: grid !important;
     place-items: center !important;
-    overflow: hidden !important;
   }
 
+  /* 3e kaart gecentreerd onderaan */
   .page2-section .services-process .services-process-card:nth-child(3) {
-    grid-column: 1 / -1 !important;
-    width: calc(50% - 6px) !important;
+    grid-column: 1 / -1 !important;   /* neemt beide kolommen in */
+    width: min(320px, 80%) !important; /* maar niet te breed */
     justify-self: center !important;
   }
 
@@ -1362,38 +1376,33 @@ input::placeholder, textarea::placeholder {
     text-align: center !important;
   }
 
-  /* Icon blocks: perfect square */
+  /* ====== ICONS: vierkante bakjes ====== */
   .page2-section .services-process .services-process-icon-container {
     aspect-ratio: 1 / 1 !important;
-    width: 12vw !important;
-    height: auto !important;
+    width: clamp(64px, 12vw, 96px) !important;
+    height: auto !important;          /* bepaald door aspect-ratio */
     display: grid !important;
     place-items: center !important;
-    margin-bottom: 2px !important;
+    margin-bottom: 4px !important;
     border-radius: 10px !important;
   }
 
-  .services-process-icon-container {
-    aspect-ratio: 1 / 1 !important;
-    display: grid !important;
-    place-items: center !important;
-  }
-
   .page2-section .services-process .services-process-icon-container img {
-    width: 9vw !important;
-    height: 9vw !important;
+    width: 70% !important;
+    height: 70% !important;
     object-fit: contain !important;
   }
 
-  /* Click for request: hoger zetten, meer ruimte eronder (mobile) */
-  .services-process-card .card-request-text {
-    margin-top: 6px !important;   /* was te klein */
-    margin-bottom: 2px !important;
+  /* ====== Typo-balans in card ====== */
+  .services-process-card h3 {
+    margin: 6px 0 2px 0 !important;
   }
 
-  /* Titel iets omhoog zodat het totaal meer balanceert */
-  .services-process-card h3 {
-    margin-bottom: 4px !important;
+  /* "click for request" iets hoger (minder bottom-weight) */
+  .services-process-card .card-request-text {
+    margin-top: 2px !important;
+    margin-bottom: 0 !important;
+    transform: translateY(-2px); /* subtiele optische lift */
   }
 
   /* Hover images disabled on mobile */
@@ -1497,4 +1506,35 @@ input::placeholder, textarea::placeholder {
   }
 }
 
+/* iOS-robust: start pas animeren zodra .hero-ready op <html> staat */
+.hero-subtitle span{
+  opacity: 0;
+  display: inline-block;
+  will-change: opacity, transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* één-voor-één met vertragingen */
+.hero-ready .hero-subtitle .hero-word-1{
+  animation: text-fade-in 600ms ease-out 0.6s both;
+}
+
+.hero-ready .hero-subtitle .hero-word-2{
+  animation: text-fade-in 600ms ease-out 1.2s both;
+}
+
+.hero-ready .hero-subtitle .hero-word-3{
+  animation: text-fade-in 600ms ease-out 1.8s both;
+}
+
+/* voorkom dat andere mobile rules dit overschrijven */
+@media (max-width:640px){
+  .hero-subtitle span{ opacity:0 !important; }
+  .hero-ready .hero-subtitle .hero-word-1,
+  .hero-ready .hero-subtitle .hero-word-2,
+  .hero-ready .hero-subtitle .hero-word-3{
+    animation-fill-mode: both !important;
+  }
+}
 

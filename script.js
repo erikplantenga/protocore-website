@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupContactForm();
   setupNavScrollEffect();
   setupHoverImages();
+  setupProcessCardClicks();
 });
 
 function setupMobileNav() {
@@ -313,5 +314,35 @@ function setupHoverImages() {
       document.addEventListener('click', handleOutsideClick);
       document.addEventListener('touchend', handleOutsideClick);
     }
+  });
+}
+
+function setupProcessCardClicks() {
+  // Luister naar klikken op de process cards (SKETCH IT, RENDER IT, BUILD IT)
+  const processCards = document.querySelectorAll('.services-process-card');
+  const subjectInput = document.getElementById('subject');
+  
+  if (!subjectInput) return;
+  
+  processCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Zoek de h3 tekst in de card (SKETCH IT, RENDER IT, of BUILD IT)
+      const h3 = card.querySelector('h3');
+      if (h3 && h3.textContent) {
+        // Vul het subject veld in met de tekst uit de h3
+        subjectInput.value = h3.textContent.trim();
+        
+        // Scroll naar het contactformulier
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          
+          // Focus op het subject veld na een korte delay (voor betere UX)
+          setTimeout(() => {
+            subjectInput.focus();
+          }, 500);
+        }
+      }
+    });
   });
 }

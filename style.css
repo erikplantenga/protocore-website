@@ -1290,14 +1290,14 @@ input::placeholder, textarea::placeholder {
   }
   
   .services-description {
-    font-size: clamp(7px, 1.5vw, 9px) !important;
-    margin-bottom: clamp(1px, 0.3vh, 3px) !important;
-    line-height: 1.2 !important;
+    font-size: clamp(11px, 2.5vw, 13px) !important;
+    margin-bottom: clamp(4px, 1vh, 6px) !important;
+    line-height: 1.4 !important;
   }
   
   .services-choose-path {
-    font-size: clamp(8px, 1.6vw, 10px) !important;
-    margin: clamp(4px, 0.8vh, 6px) auto 0 !important;
+    font-size: clamp(12px, 3vw, 14px) !important;
+    margin: clamp(8px, 2vh, 12px) auto 0 !important;
   }
   
   .services-process {

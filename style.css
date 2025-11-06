@@ -689,32 +689,36 @@ svg * { transform-box: fill-box; transform-origin: center; }
 @media (max-width: 768px) {
   .services-process-cards {
     grid-template-columns: 1fr;
-    gap: clamp(6px, 1vw, 10px);
+    gap: clamp(4px, 0.8vw, 6px);
   }
   
   .services-process-card {
-    padding: clamp(8px, 1.5vw, 12px);
+    padding: clamp(6px, 1.2vw, 8px) !important;
+    border-radius: 8px !important;
   }
   
   .services-process-icon-container {
-    width: clamp(24px, 6vw, 36px);
-    height: clamp(24px, 6vw, 36px);
-    margin-bottom: 4px;
+    width: clamp(18px, 4.5vw, 24px) !important;
+    height: clamp(18px, 4.5vw, 24px) !important;
+    margin-bottom: 3px !important;
+    border-radius: 6px !important;
   }
   
   .services-process-icon-container img {
-    width: clamp(14px, 3.5vw, 20px);
-    height: clamp(14px, 3.5vw, 20px);
+    width: clamp(10px, 2.5vw, 14px) !important;
+    height: clamp(10px, 2.5vw, 14px) !important;
   }
   
   .services-process-card h3 {
-    font-size: clamp(8px, 2vw, 11px);
-    margin: 0 0 1px 0;
+    font-size: clamp(7px, 1.6vw, 9px) !important;
+    margin: 0 0 1px 0 !important;
+    line-height: 1.2 !important;
   }
   
   .card-request-text {
-    font-size: clamp(6px, 1.2vw, 8px);
-    margin: 1px 0 0 0;
+    font-size: clamp(5px, 1vw, 7px) !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
   }
 }
 
@@ -1170,11 +1174,13 @@ input::placeholder, textarea::placeholder {
   }
   
   .about-photo-container {
-    margin-top: clamp(6px, 1vh, 10px) !important;
+    margin-top: clamp(4px, 0.8vh, 6px) !important;
+    height: clamp(100px, 15vh, 130px) !important;
+    border-radius: 6px !important;
   }
   
   .about-photo {
-    max-height: 130px !important;
+    max-height: 100% !important;
     width: 100% !important;
     object-fit: cover !important;
   }
@@ -1204,40 +1210,41 @@ input::placeholder, textarea::placeholder {
     font-size: 10px; 
   }
   
-  /* Page2/Expertise sectie - compact maar scrollbaar */
+  /* Page2/Expertise sectie - ULTRA compact voor 1 scherm */
   .page2-section {
-    padding: clamp(4px, 0.8vh, 8px) 0 !important;
+    padding: clamp(2px, 0.5vh, 4px) 0 !important;
     min-height: auto !important;
     overflow: visible !important;
     height: auto !important;
   }
   
   .services-header {
-    margin-bottom: clamp(4px, 0.8vh, 8px) !important;
+    margin-bottom: clamp(2px, 0.5vh, 4px) !important;
   }
   
   .services-title {
-    font-size: clamp(14px, 3.5vw, 20px) !important;
-    margin-bottom: 2px !important;
+    font-size: clamp(12px, 3vw, 16px) !important;
+    margin-bottom: 1px !important;
   }
   
   .services-title-line {
-    margin-bottom: clamp(2px, 0.5vh, 6px) !important;
+    margin-bottom: clamp(1px, 0.3vh, 3px) !important;
+    height: 1px !important;
   }
   
   .services-description {
-    font-size: clamp(8px, 1.8vw, 10px) !important;
-    margin-bottom: clamp(2px, 0.5vh, 4px) !important;
-    line-height: 1.25 !important;
+    font-size: clamp(7px, 1.5vw, 9px) !important;
+    margin-bottom: clamp(1px, 0.3vh, 3px) !important;
+    line-height: 1.2 !important;
   }
   
   .services-choose-path {
-    font-size: clamp(9px, 2vw, 11px) !important;
-    margin: clamp(6px, 1vh, 10px) auto 0 !important;
+    font-size: clamp(8px, 1.6vw, 10px) !important;
+    margin: clamp(4px, 0.8vh, 6px) auto 0 !important;
   }
   
   .services-process {
-    margin-top: clamp(6px, 1vh, 10px) !important;
+    margin-top: clamp(4px, 0.8vh, 6px) !important;
   }
   
   /* Services sectie - compact voor 1 scherm */

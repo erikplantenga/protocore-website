@@ -329,8 +329,8 @@ function setupProcessCardClicks() {
       // Zoek de h3 tekst in de card (SKETCH IT, RENDER IT, of BUILD IT)
       const h3 = card.querySelector('h3');
       if (h3 && h3.textContent) {
-        // Vul het subject veld in met de tekst uit de h3
-        subjectInput.value = h3.textContent.trim();
+        // Vul het subject veld in met "Subject: " + de tekst uit de h3
+        subjectInput.value = 'Subject: ' + h3.textContent.trim();
         
         // Scroll naar het contactformulier
         const contactSection = document.getElementById('contact');

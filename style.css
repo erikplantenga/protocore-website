@@ -661,17 +661,32 @@ svg * { transform-box: fill-box; transform-origin: center; }
 @media (max-width: 768px) {
   .services-process-cards {
     grid-template-columns: 1fr;
-    gap: clamp(24px, 4vw, 32px);
+    gap: clamp(20px, 3vw, 28px);
+  }
+  
+  .services-process-card {
+    padding: clamp(20px, 4vw, 32px);
   }
   
   .services-process-icon-container {
-    width: clamp(70px, 15vw, 100px);
-    height: clamp(70px, 15vw, 100px);
+    width: clamp(50px, 12vw, 80px);
+    height: clamp(50px, 12vw, 80px);
+    margin-bottom: 16px;
   }
   
   .services-process-icon-container img {
-    width: clamp(42px, 10vw, 60px);
-    height: clamp(42px, 10vw, 60px);
+    width: clamp(30px, 7vw, 50px);
+    height: clamp(30px, 7vw, 50px);
+  }
+  
+  .services-process-card h3 {
+    font-size: clamp(14px, 3.5vw, 18px);
+    margin: 0 0 12px 0;
+  }
+  
+  .card-request-text {
+    font-size: clamp(10px, 2.5vw, 12px);
+    margin: 6px 0 0 0;
   }
 }
 

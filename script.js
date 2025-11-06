@@ -35,16 +35,13 @@ function setupMobileNav() {
     }
   });
   
-  // Menu blijft zichtbaar na klikken - alleen op mobiel sluiten we het menu
+  // Menu sluit direct na klikken op een link (alleen op mobiel)
   // Op desktop blijft menu altijd zichtbaar (fixed position)
   menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      // Alleen op mobiel: sluit menu na klik (met kleine delay voor smooth scroll)
+      // Alleen op mobiel: sluit menu direct na klik
       if (isMobile()) {
-        // Alleen op mobiel: sluit menu na klik (met kleine delay voor smooth scroll)
-        setTimeout(() => {
-          closeMenu();
-        }, 300);
+        closeMenu();
       }
       // Op desktop blijft menu gewoon zichtbaar (fixed position zorgt hiervoor)
     });

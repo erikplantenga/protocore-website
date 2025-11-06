@@ -1748,19 +1748,64 @@ input::placeholder, textarea::placeholder {
   html.no-scroll, body.no-scroll{ overflow:hidden !important; }
 }
 
-/* Mobile: 2 cards on first row, 3rd centered below */
+/* ==== Mobile Expertise perfect layout ==== */
 @media (max-width: 640px) {
+
+  /* Grid: 2 cards top, 1 centered below */
   .services-process-cards {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
     justify-content: center !important;
+    padding: 0 16px !important;
   }
 
-  /* 3rd card spans full width but stays centered */
-  .services-process-cards > .services-process-card:nth-child(3) {
-    grid-column: 1 / -1 !important;   /* take whole row */
-    justify-self: center !important;   /* center the card */
-    width: 70% !important;             /* adjust size to taste */
+  /* All 3 cards same size */
+  .services-process-card {
+    height: 40vw !important;
+    width: 100% !important;
+    aspect-ratio: auto !important;
+    padding: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border-radius: 14px !important;
+  }
+
+  /* 3rd card centered underneath */
+  .services-process-card:nth-child(3) {
+    grid-column: 1 / -1 !important;
+    justify-self: center !important;
+    width: 60% !important; /* adjust to taste */
+  }
+
+  /* Icon container square and centered */
+  .services-process-icon-container {
+    width: 14vw !important;
+    height: 14vw !important; /* square */
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 6px !important;
+  }
+
+  .services-process-icon-container img {
+    width: 9vw !important;
+    height: 9vw !important; /* keep icon square */
+    object-fit: contain !important;
+  }
+
+  /* Typographic scale */
+  .services-process-card h3 {
+    font-size: 3.5vw !important;
+    margin-bottom: 2px !important;
+  }
+
+  .services-process-card .card-request-text {
+    font-size: 2.9vw !important;
+    opacity: 0.85 !important;
   }
 }
 

@@ -91,14 +91,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* Container */
 .container { width: min(1200px, 92vw); margin: 0 auto; }
 
-/* Op mobiel: container met meer witruimte links/rechts */
-@media (max-width: 768px) {
-  .container {
-    width: 100% !important;
-    padding: 0 clamp(24px, 8vw, 40px) !important;
-  }
-}
-
 /* ==========================
    Expertise Section (Page 2)
    ========================== */
@@ -696,61 +688,6 @@ svg * { transform-box: fill-box; transform-origin: center; }
   }
 }
 
-@media (max-width: 768px) {
-  .services-process-cards {
-    grid-template-columns: 1fr;
-    gap: clamp(8px, 1.2vw, 12px);
-    max-width: 280px;
-    margin: 0 auto;
-  }
-  
-  .services-process-card {
-    padding: clamp(12px, 2vw, 18px);
-    border-radius: 12px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 0;
-    aspect-ratio: 1; /* Vierkant maken */
-    width: 100%;
-  }
-  
-  .services-process-icon-container {
-    width: clamp(32px, 5vw, 48px);
-    height: clamp(32px, 5vw, 48px);
-    margin-bottom: clamp(8px, 1.5vw, 12px);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .services-process-icon-container img {
-    width: clamp(20px, 3.5vw, 28px);
-    height: clamp(20px, 3.5vw, 28px);
-  }
-  
-  .services-process-card h3 {
-    font-size: clamp(7px, 0.9vw, 9px);
-    margin: 0 0 clamp(4px, 0.8vw, 6px) 0;
-    line-height: 1.3;
-    text-align: center;
-  }
-  
-  .card-request-text {
-    font-size: clamp(6px, 0.8vw, 8px);
-    margin: 0;
-    line-height: 1.4;
-    text-align: center;
-  }
-  
-  /* Hover images uitschakelen op mobiel */
-  .card-hover-image {
-    display: none !important;
-  }
-}
 
 .services-process-card {
   background: linear-gradient(135deg, #2f2f2f 0%, #242424 50%, #2f2f2f 100%);
@@ -1013,419 +950,6 @@ input::placeholder, textarea::placeholder {
   }
 }
 
-/* Mobiel - kleine schermen (tot 767px) */
-@media (max-width: 767px){
-  .top-nav {
-    flex-direction: row; /* Hamburger rechts */
-    align-items: center;
-    justify-content: flex-end;
-  }
-  
-  /* Verberg nav-menu standaard op mobiel - alleen hamburger zichtbaar */
-  .top-nav .nav-menu { 
-    display: none !important; 
-    position: absolute;
-    top: 50px;
-    right: 0;
-    background: #fff;
-    border: none; /* Geen kader */
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    min-width: 150px;
-    z-index: 102;
-  }
-  
-  /* Wanneer menu open is - check op inline style */
-  .top-nav .nav-menu[style*="flex"],
-  .top-nav .nav-menu[style*="display: flex"] {
-    display: flex !important;
-  }
-  
-  /* Zorg dat menu sluit als display: none wordt gezet */
-  .top-nav .nav-menu[style*="none"],
-  .top-nav .nav-menu[style*="display: none"] {
-    display: none !important;
-  }
-  
-  .nav-menu a {
-    border: none !important; /* Geen kaders in menu */
-    width: auto;
-    min-width: 120px;
-    animation: none;
-    opacity: 1;
-  }
-  
-  .hamburger { 
-    display: flex !important; 
-  }
-  
-  .services-grid { grid-template-columns: 1fr; }
-  
-  /* Services responsive voor mobiel - nog kleiner + vierkant (breedte = hoogte) */
-  .services-process-cards {
-    grid-template-columns: 1fr !important;
-    gap: clamp(8px, 1.2vw, 12px) !important;
-    max-width: 280px !important;
-    margin: 0 auto !important;
-  }
-  
-  .services-process-card {
-    padding: clamp(12px, 2vw, 18px) !important;
-    border-radius: 12px !important;
-    text-align: center !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-height: 0 !important;
-    aspect-ratio: 1 !important; /* Vierkant maken */
-    width: 100% !important;
-  }
-  
-  .services-process-icon-container {
-    width: clamp(32px, 5vw, 48px) !important;
-    height: clamp(32px, 5vw, 48px) !important;
-    margin-bottom: clamp(8px, 1.5vw, 12px) !important;
-    border-radius: 10px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  
-  .services-process-icon-container img {
-    width: clamp(20px, 3.5vw, 28px) !important;
-    height: clamp(20px, 3.5vw, 28px) !important;
-  }
-  
-  .services-process-card h3 {
-    font-size: clamp(7px, 0.9vw, 9px) !important;
-    margin: 0 0 clamp(4px, 0.8vw, 6px) 0 !important;
-    line-height: 1.3 !important;
-    text-align: center !important;
-  }
-  
-  .card-request-text {
-    font-size: clamp(6px, 0.8vw, 8px) !important;
-    margin: 0 !important;
-    line-height: 1.4 !important;
-    text-align: center !important;
-  }
-  
-  /* Hover images uitschakelen op mobiel */
-  .card-hover-image {
-    display: none !important;
-  }
-  
-  /* Hero fix voor iPhone - volledig schermvullend */
-  .hero {
-    min-height: 100vh !important;
-    min-height: -webkit-fill-available !important; /* iPhone Safari fix */
-    height: 100vh !important;
-    height: -webkit-fill-available !important;
-    padding-block: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  
-  .hero-content {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Logo - animaties op mobiel met fallback voor iPhone - kleiner voor 1 scherm */
-  #logo {
-    opacity: 0;
-    width: 100%;
-    min-height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Eenvoudige fade-in + zeer snelle fallback (500ms) voor iPhone */
-    animation: logo-fade-in-mobile 600ms ease-out 200ms 1 forwards,
-               logo-fade-fallback 200ms ease-out 500ms 1 forwards;
-  }
-  
-  /* Eenvoudige fade-in voor iPhone - geen transform (iPhone Safari kan problemen hebben) */
-  @keyframes logo-fade-in-mobile {
-    0%   { opacity: 0; }
-    100% { opacity: 1; }
-  }
-  
-  /* Fallback - zorgt dat logo ALTIJD zichtbaar wordt na 500ms */
-  @keyframes logo-fade-fallback {
-    to { opacity: 1 !important; transform: none !important; }
-  }
-  
-  /* Top nav kleiner voor mobiel */
-  .top-nav { 
-    gap: 8px; 
-    right: clamp(8px, 2vw, 16px); 
-    top: clamp(8px, 2vh, 16px); 
-  }
-  .top-nav a { 
-    width: 70px; 
-    height: 28px; 
-    font-size: 0.65em; 
-    padding: 4px 8px; 
-  }
-  
-  /* Logo voor mobiel - zelfde verhoudingen als iPad maar kleiner */
-  #logo svg, #logo img { 
-    width: clamp(280px, 70vw, 400px) !important;
-    display: block !important;
-  }
-  
-  /* Teksten voor mobiel - animatie 1 voor 1, zelfde verhoudingen als iPad */
-  .hero-subtitle { 
-    font-size: clamp(11px, 2.5vw, 14px) !important;
-    margin-top: clamp(24px, 6vh, 40px) !important;
-  }
-  
-  .hero-subtitle {
-    opacity: 1 !important; /* Container zichtbaar */
-  }
-  
-  .hero-subtitle span {
-    opacity: 0 !important;
-    animation: text-fade-in 600ms ease-out forwards !important;
-  }
-  
-  .hero-subtitle .hero-word-1 {
-    animation-delay: 1200ms !important;
-  }
-  
-  .hero-subtitle .hero-word-2 {
-    animation-delay: 2000ms !important;
-  }
-  
-  .hero-subtitle .hero-word-3 {
-    animation-delay: 2800ms !important;
-  }
-  .hero-description { 
-    font-size: clamp(12px, 3.5vw, 16px) !important;
-    opacity: 0;
-    animation: text-fade-in 600ms ease-out 1500ms 1 both,
-               text-fade-fallback 200ms ease-out 2300ms 1 forwards;
-  }
-  
-  /* Fallback animatie voor teksten - zorgt dat ze altijd zichtbaar worden */
-  @keyframes text-fade-fallback {
-    to { opacity: 1 !important; }
-  }
-  
-  /* Forceer SVG animaties op mobiel - ook zonder run-anim class voor iPhone */
-  #logo svg.run-anim #_x23_Letter_x5F_x5F_x5F_E,
-  #logo svg #_x23_Letter_x5F_x5F_x5F_E {
-    animation: e-jerk 1700ms cubic-bezier(.15,.9,.1,1) 900ms 1 both !important;
-    transform: rotate(50deg);
-  }
-  #logo svg.run-anim #_x23_Letter_x5F_x5F_x5F_Punt,
-  #logo svg #_x23_Letter_x5F_x5F_x5F_Punt {
-    animation: punt-in 1300ms ease-out 900ms 1 both !important;
-  }
-  
-  /* About sectie op mobiel - volledig schermvullend */
-  .about-section {
-    padding: clamp(16px, 4vh, 24px) clamp(12px, 3vw, 20px) !important;
-    min-height: 100vh !important;
-    min-height: -webkit-fill-available !important;
-    height: 100vh !important;
-    height: -webkit-fill-available !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-  }
-  
-  .about-section .container {
-    min-height: auto !important;
-    width: 100% !important;
-    padding: 0 !important;
-  }
-  
-  .about-title {
-    font-size: clamp(20px, 5vw, 28px) !important;
-    margin-bottom: 4px !important;
-  }
-  
-  .about-title-line {
-    margin-bottom: clamp(8px, 1.5vh, 12px) !important;
-  }
-  
-  .about-text {
-    font-size: clamp(12px, 3vw, 14px) !important;
-    margin-bottom: clamp(6px, 1.5vh, 10px) !important;
-    line-height: 1.5 !important;
-  }
-  
-  .about-photo-container {
-    margin-top: clamp(4px, 0.8vh, 6px) !important;
-    height: clamp(100px, 15vh, 130px) !important;
-    border-radius: 6px !important;
-  }
-  
-  .about-photo {
-    max-height: 100% !important;
-    width: 100% !important;
-    object-fit: cover !important;
-  }
-  
-  .about-photos {
-    grid-template-columns: 1fr;
-  }
-  
-  .about-process-cards {
-    grid-template-columns: 1fr;
-  }
-  
-  /* Punt animatie aanpassen voor mobiel - kleinere beweging */
-  @keyframes punt-in {
-    0%   { transform: translateX(1500px); opacity: 0; }
-    20%  { transform: translateX(800px); opacity: 1; }
-    40%  { transform: translateX(400px); }
-    60%  { transform: translateX(150px); }
-    78%  { transform: translateX(-12px); }
-    90%  { transform: translateX(4px); }
-    100% { transform: translateX(0); }
-  }
-  
-  /* Scroll indicator zichtbaar op mobiel */
-  .scroll-indicator { 
-    bottom: clamp(20px, 5vh, 40px) !important; 
-    font-size: clamp(10px, 2.5vw, 12px) !important;
-    opacity: 1 !important;
-    display: block !important;
-  }
-  
-  /* Page2/Expertise sectie - volledig schermvullend */
-  .page2-section {
-    padding: clamp(12px, 3vh, 20px) clamp(12px, 3vw, 20px) !important;
-    min-height: 100vh !important;
-    min-height: -webkit-fill-available !important;
-    height: 100vh !important;
-    height: -webkit-fill-available !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-  }
-  
-  .page2-content {
-    width: 100% !important;
-    padding: clamp(8px, 2vh, 12px) 0 0 0 !important;
-  }
-  
-  .services-header {
-    margin-bottom: clamp(2px, 0.5vh, 4px) !important;
-  }
-  
-  .services-title {
-    font-size: clamp(20px, 5vw, 28px) !important;
-    margin-bottom: 1px !important;
-  }
-  
-  .services-title-line {
-    margin-bottom: clamp(8px, 1.5vh, 12px) !important;
-    height: 2px !important;
-  }
-  
-  .about-title-line {
-    height: 2px !important;
-  }
-  
-  .services-description {
-    font-size: clamp(11px, 2.5vw, 13px) !important;
-    margin-bottom: clamp(4px, 1vh, 6px) !important;
-    line-height: 1.4 !important;
-  }
-  
-  .services-choose-path {
-    font-size: clamp(12px, 3vw, 14px) !important;
-    margin: clamp(8px, 2vh, 12px) auto 0 !important;
-  }
-  
-  .services-process {
-    margin-top: clamp(4px, 0.8vh, 6px) !important;
-  }
-  
-  /* Services sectie - volledig schermvullend */
-  .services {
-    padding: clamp(8px, 2vh, 16px) 0 !important;
-    min-height: 100vh !important;
-    min-height: -webkit-fill-available !important;
-    height: 100vh !important;
-    height: -webkit-fill-available !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-  }
-  
-  /* Contact sectie - volledig schermvullend */
-  .contact {
-    padding: clamp(8px, 2vh, 16px) 0 !important;
-    min-height: 100vh !important;
-    min-height: -webkit-fill-available !important;
-    height: 100vh !important;
-    height: -webkit-fill-available !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-  }
-  
-  .contact-header {
-    margin-bottom: clamp(8px, 1.5vh, 12px) !important;
-  }
-  
-  .contact-title {
-    font-size: clamp(20px, 5vw, 28px) !important;
-    margin-bottom: 4px !important;
-  }
-  
-  .contact-title-line {
-    margin-bottom: clamp(4px, 0.8vh, 8px) !important;
-  }
-  
-  .contact-description {
-    font-size: clamp(12px, 3vw, 14px) !important;
-    margin-bottom: clamp(6px, 1.5vh, 10px) !important;
-    line-height: 1.5 !important;
-  }
-  
-  .contact-content {
-    gap: clamp(12px, 2vh, 18px) !important;
-  }
-  
-  .contact-item {
-    margin-bottom: 8px !important;
-  }
-  
-  .contact-item h4 {
-    font-size: 10px !important;
-    margin-bottom: 2px !important;
-  }
-  
-  .contact-item p {
-    font-size: clamp(10px, 2.2vw, 12px) !important;
-  }
-  
-  input, textarea {
-    padding: 8px 10px !important;
-    font-size: 13px !important;
-  }
-  
-  .submit-button {
-    padding: 8px 14px !important;
-    font-size: 13px !important;
-  }
-  
-  :root { --logo-nudge: 0px; }
-}
 
 /* Tablet / iPad specifiek (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -1466,148 +990,6 @@ input::placeholder, textarea::placeholder {
   }
 }
 
-/* ===== Mobile (≤640px): simpeler layout, geen sticky, kleinere boxen ===== */
-@media (max-width: 640px) {
-  /* 1) Geen sticky op mobiel */
-  .top-nav,
-  .sticky,
-  [data-sticky="true"] {
-    position: static !important;
-    top: auto !important;
-  }
-
-  /* 2) Navigatie zichtbaarheidslogica via class i.p.v. inline styles */
-  #nav-menu { display: none; }
-  #nav-menu.is-open {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .no-scroll { overflow: hidden; touch-action: none; }
-
-  /* 3) Boxen/kaarten kleiner */
-  .card,
-  .feature-box,
-  .info-box {
-    padding: 14px 16px;
-    border-radius: 10px;
-    font-size: 0.95rem;
-  }
-  .services-grid,
-  .cards-grid,
-  .features-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* 1 kolom op mobiel */
-    gap: 14px;
-  }
-  .card h3,
-  .feature-box h3 {
-    font-size: 1.05rem;
-    margin: 0 0 8px;
-  }
-  .card p,
-  .feature-box p {
-    font-size: 0.95rem;
-    line-height: 1.35;
-  }
-
-  /* Expertise-kaarten: vierkant & 2× kleiner op telefoon */
-  .services-process-cards {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    padding: 0 12px;
-    max-width: none !important;
-    margin: 0 !important;
-  }
-  @media (max-width: 360px) {
-    .services-process-cards {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .services-process-card {
-    aspect-ratio: 1 / 1;              /* maakt ze vierkant */
-    padding: 12px;                     /* kleiner dan tablet/desktop */
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    min-height: 0 !important;
-    width: 100% !important;
-  }
-
-  /* Inner layout center + schaalbare typografie */
-  .services-process-card > * {
-    margin: 0;                         /* reset marges */
-  }
-  .services-process-card .card-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 6px;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Icon/afbeelding schaalt mee */
-  .services-process-card .services-process-icon-container {
-    width: clamp(28px, 18vw, 44px) !important;
-    height: clamp(28px, 18vw, 44px) !important;
-    margin-bottom: 0 !important;
-  }
-  .services-process-card .services-process-icon-container img {
-    width: clamp(20px, 12vw, 32px) !important;
-    height: clamp(20px, 12vw, 32px) !important;
-  }
-
-  /* Titel + tekst schaalbaar en compact */
-  .services-process-card h3 {
-    font-size: clamp(0.9rem, 3.6vw, 1.05rem) !important;
-    line-height: 1.15 !important;
-    margin: 0 !important;
-  }
-  .services-process-card p,
-  .services-process-card .card-request-text {
-    font-size: clamp(0.8rem, 3.2vw, 0.95rem) !important;
-    line-height: 1.35 !important;
-    opacity: 0.9;
-    margin: 0 !important;
-  }
-
-  /* 4) Hero/typografie compacter */
-  .hero-title { font-size: clamp(1.35rem, 4.5vw, 1.6rem); }
-  .hero-subtitle { font-size: clamp(1rem, 3.8vw, 1.15rem); }
-  .hero-description { font-size: 0.95rem; }
-
-  /* 5) Buttons en inputs */
-  .btn { padding: 10px 14px; font-size: 0.95rem; }
-  input, select, textarea { font-size: 16px; } /* iOS zoom-prevent */
-
-  /* 6) Hover-image weergave binnen kaarten - netjes binnen vierkant */
-  .services-process-card .card-hover-image {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 200ms ease;
-    z-index: 0;
-  }
-  .services-process-card.card-image-active .card-hover-image {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* 7) Sectiemarges iets kleiner */
-  section { padding: 36px 16px; }
-  .container { padding-left: 16px; padding-right: 16px; }
-}
 
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce){
@@ -1615,204 +997,275 @@ input::placeholder, textarea::placeholder {
   html { scroll-behavior: auto; }
 }
 
-/* ==== PHONE HARD FIX (last wins) ==== */
+
+/* === SINGLE MOBILE BREAKPOINT: 640px - ALL MOBILE RULES CONSOLIDATED === */
 @media (max-width: 640px) {
-
-  /* 1) Grid: 2 kolommen, geen max-width beperkingen */
-  .page2-section .services-process .services-process-cards{
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+  
+  /* Container: equal side padding and full width */
+  .container {
     width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 12px !important;
+    padding-left: clamp(16px, 4vw, 28px) !important;
+    padding-right: clamp(16px, 4vw, 28px) !important;
   }
 
-  /* 2) Kaarten: klein vierkant, minimale padding, geen min-heights */
-  .page2-section .services-process .services-process-cards > .services-process-card{
-    height: 34vw !important;          /* compacter dan 38vw */
-    aspect-ratio: auto !important;     /* voorkom conflict met eerdere aspect-ratio */
-    min-height: 0 !important;
-    width: 100% !important;
-    padding: 10px !important;
-    border-radius: 12px !important;
-    display: grid !important;
-    place-items: center !important;
-    overflow: hidden !important;
-  }
-
-  /* 3) Inhoud compact & gecentreerd */
-  .page2-section .services-process .services-process-card .services-process-icon-container{
-    width: 12vw !important;
-    height: 12vw !important;
-    margin: 0 0 2px 0 !important;
-    border-radius: 10px !important;
-    display: grid !important;
-    place-items: center !important;
-  }
-  .page2-section .services-process .services-process-card .services-process-icon-container img{
-    width: 9vw !important;
-    height: 9vw !important;
-  }
-  .page2-section .services-process .services-process-card h3{
-    font-size: 3.6vw !important;
-    line-height: 1.15 !important;
-    margin: 0 !important;
-    text-align: center !important;
-  }
-  .page2-section .services-process .services-process-card .card-request-text{
-    font-size: 3.2vw !important;
-    line-height: 1.3 !important;
-    margin: 0 !important;
-    opacity: .9;
-  }
-
-  /* 4) Hover-foto netjes binnen het vierkant (optioneel bij tap) */
-  .page2-section .services-process .services-process-card .card-hover-image{
-    position: absolute !important;
-    inset: 0 !important;
-    background-size: cover !important;
-    background-position: center !important;
-    border-radius: inherit !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    transition: opacity 200ms ease !important;
-    z-index: 0 !important;
-  }
-  .page2-section .services-process .services-process-card.card-image-active .card-hover-image{
-    opacity: 1 !important;
-    pointer-events: auto !important;
-  }
-}
-
-/* ==== PHONE PAGE-FILL + CONSISTENT GUTTERS + SLOGAN VISIBLE ==== */
-@media (max-width: 640px){
-  :root{ --gutter: clamp(16px, 5vw, 22px); }
-
-  /* Alle hoofdsecties schermvullend met veilige randen (iPhone notch) */
-  section#home.hero,
-  section#expertise.page2-section,
-  section#about.about-section,
-  section#contact.contact{
+  /* Sections: fill screen */
+  section {
     min-height: 100svh !important;
-    width: 100% !important;
+  }
+
+  /* Hamburger menu - JS controlled via .is-open class */
+  .top-nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    right: clamp(8px, 2vw, 16px);
+    top: clamp(8px, 2vh, 16px);
+  }
+
+  .top-nav .nav-menu {
+    display: none !important;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    min-width: 150px;
+    z-index: 102;
+  }
+
+  .top-nav .nav-menu.is-open {
     display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    padding: calc(env(safe-area-inset-top) + 12px)
-             var(--gutter)
-             calc(env(safe-area-inset-bottom) + 20px) !important;
+    flex-direction: column;
+    gap: 12px;
   }
 
-  /* Zorg overal voor gelijke linkse/rechtse witruimte */
-  .container{
-    width: 100% !important;
-    padding-left: var(--gutter) !important;
-    padding-right: var(--gutter) !important;
+  .nav-menu a {
+    border: none !important;
+    width: auto;
+    min-width: 120px;
+    animation: none;
+    opacity: 1;
+    width: 70px;
+    height: 28px;
+    font-size: 0.65em;
+    padding: 4px 8px;
   }
 
-  /* Expertise: geen extra margins/padding die overflow geven */
-  .services-header{ margin-left:0 !important; margin-right:0 !important; }
-  .services-process{ margin-top: 12px !important; }
-  .services-process-cards{ padding:0 !important; }
-
-  /* About: netjes centreren als content kort is */
-  .about-section .container{
-    margin: 0 !important;
+  .hamburger {
+    display: flex !important;
   }
 
-  /* Slogan (SKETCH IT / etc.) altijd zichtbaar op phone */
+  /* Hero: full screen */
+  .hero {
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+    padding-block: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Logo mobile */
+  #logo {
+    opacity: 0;
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: logo-fade-in-mobile 600ms ease-out 200ms 1 forwards,
+               logo-fade-fallback 200ms ease-out 500ms 1 forwards;
+  }
+
+  @keyframes logo-fade-in-mobile {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes logo-fade-fallback {
+    to { opacity: 1 !important; transform: none !important; }
+  }
+
+  #logo svg, #logo img {
+    width: clamp(280px, 70vw, 400px) !important;
+    display: block !important;
+  }
+
+  /* Hero subtitle: SINGLE DEFINITIVE RULE - always visible, no animation */
+  .hero-subtitle {
+    font-size: clamp(11px, 2.5vw, 14px) !important;
+    margin-top: clamp(24px, 6vh, 40px) !important;
+  }
+
   .hero-subtitle,
-  .hero-subtitle span{
+  .hero-subtitle span {
     opacity: 1 !important;
     animation: none !important;
   }
 
-  /* Hamburger menu staat standaard uit… */
-  .top-nav .nav-menu{ display: none !important; }
-  /* …en bij open is hij zichtbaar als dropdown */
-  .top-nav .nav-menu.is-open{
-    display: flex !important;
-    flex-direction: column;
-    gap: 10px;
-    background:#fff;
-    padding:12px;
-    border-radius:8px;
-    position:absolute;
-    top:48px; right:0;
-    box-shadow:0 8px 24px rgba(0,0,0,.12);
+  .hero-description {
+    font-size: clamp(12px, 3.5vw, 16px) !important;
+    opacity: 0;
+    animation: text-fade-in 600ms ease-out 1500ms 1 both,
+               text-fade-fallback 200ms ease-out 2300ms 1 forwards;
   }
 
-  /* Scroll blokkeren als menu open is */
-  html.no-scroll, body.no-scroll{ overflow:hidden !important; }
-}
-
-/* ==== Mobile Expertise perfect layout ==== */
-@media (max-width: 640px) {
-
-  /* Grid: 2 cards top, 1 centered below */
-  .services-process-cards {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 16px !important;
-    justify-content: center !important;
-    padding: 0 16px !important;
+  @keyframes text-fade-fallback {
+    to { opacity: 1 !important; }
   }
 
-  /* All 3 cards same size */
-  .services-process-card {
-    height: 40vw !important;
-    width: 100% !important;
-    aspect-ratio: auto !important;
-    padding: 12px !important;
+  /* Logo SVG animations */
+  #logo svg.run-anim #_x23_Letter_x5F_x5F_x5F_E,
+  #logo svg #_x23_Letter_x5F_x5F_x5F_E {
+    animation: e-jerk 1700ms cubic-bezier(.15,.9,.1,1) 900ms 1 both !important;
+    transform: rotate(50deg);
+  }
+
+  #logo svg.run-anim #_x23_Letter_x5F_x5F_x5F_Punt,
+  #logo svg #_x23_Letter_x5F_x5F_x5F_Punt {
+    animation: punt-in 1300ms ease-out 900ms 1 both !important;
+  }
+
+  @keyframes punt-in {
+    0%   { transform: translateX(1500px); opacity: 0; }
+    20%  { transform: translateX(800px); opacity: 1; }
+    40%  { transform: translateX(400px); }
+    60%  { transform: translateX(150px); }
+    78%  { transform: translateX(-12px); }
+    90%  { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+  }
+
+  /* About section: full screen */
+  .about-section {
+    padding: clamp(16px, 4vh, 24px) clamp(12px, 3vw, 20px) !important;
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
-    align-items: center !important;
-    border-radius: 14px !important;
   }
 
-  /* 3rd card centered underneath */
-  .services-process-card:nth-child(3) {
-    grid-column: 1 / -1 !important;
-    justify-self: center !important;
-    width: 60% !important; /* adjust to taste */
+  .about-section .container {
+    min-height: auto !important;
+    width: 100% !important;
+    padding: 0 !important;
   }
 
-  /* Icon container square and centered */
-  .services-process-icon-container {
-    width: 14vw !important;
-    height: 14vw !important; /* square */
-    border-radius: 10px !important;
+  .about-title {
+    font-size: clamp(20px, 5vw, 28px) !important;
+    margin-bottom: 4px !important;
+  }
+
+  .about-title-line {
+    margin-bottom: clamp(8px, 1.5vh, 12px) !important;
+    height: 2px !important;
+  }
+
+  .about-text {
+    font-size: clamp(12px, 3vw, 14px) !important;
+    margin-bottom: clamp(6px, 1.5vh, 10px) !important;
+    line-height: 1.5 !important;
+  }
+
+  .about-photo-container {
+    margin-top: clamp(4px, 0.8vh, 6px) !important;
+    height: clamp(100px, 15vh, 130px) !important;
+    border-radius: 6px !important;
+  }
+
+  .about-photo {
+    max-height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .about-photos {
+    grid-template-columns: 1fr;
+  }
+
+  .about-process-cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Page2/Expertise section: full screen */
+  .page2-section {
+    padding: clamp(12px, 3vh, 20px) clamp(12px, 3vw, 20px) !important;
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
     display: flex !important;
-    align-items: center !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+  }
+
+  .page2-content {
+    width: 100% !important;
+    padding: clamp(8px, 2vh, 12px) 0 0 0 !important;
+  }
+
+  .services-header {
+    margin-bottom: clamp(2px, 0.5vh, 4px) !important;
+  }
+
+  .services-title {
+    font-size: clamp(20px, 5vw, 28px) !important;
+    margin-bottom: 1px !important;
+  }
+
+  .services-title-line {
+    margin-bottom: clamp(8px, 1.5vh, 12px) !important;
+    height: 2px !important;
+  }
+
+  .services-description {
+    font-size: clamp(11px, 2.5vw, 13px) !important;
+    margin-bottom: clamp(4px, 1vh, 6px) !important;
+    line-height: 1.4 !important;
+  }
+
+  .services-choose-path {
+    font-size: clamp(12px, 3vw, 14px) !important;
+    margin: clamp(8px, 2vh, 12px) auto 0 !important;
+  }
+
+  .services-process {
+    margin-top: clamp(4px, 0.8vh, 6px) !important;
+  }
+
+  /* Services section: full screen */
+  .services {
+    padding: clamp(8px, 2vh, 16px) 0 !important;
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+    display: flex !important;
+    flex-direction: column !important;
     justify-content: center !important;
-    margin-bottom: 6px !important;
   }
 
-  .services-process-icon-container img {
-    width: 9vw !important;
-    height: 9vw !important; /* keep icon square */
-    object-fit: contain !important;
-  }
-
-  /* Typographic scale */
-  .services-process-card h3 {
-    font-size: 3.5vw !important;
-    margin-bottom: 2px !important;
-  }
-
-  .services-process-card .card-request-text {
-    font-size: 2.9vw !important;
-    opacity: 0.85 !important;
-  }
-}
-
-/* === PHONE FIX: 2 boven, 1 gecentreerd eronder + vierkante icon-vlakjes === */
-@media (max-width: 640px) {
-
-  /* 2 kolommen en items centreren binnen hun kolom */
+  /* Services process cards: 2-top, 1-middle grid */
   .page2-section .services-process .services-process-cards {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -1824,10 +1277,9 @@ input::placeholder, textarea::placeholder {
     padding: 0 12px !important;
   }
 
-  /* standaard kaart: kolombreedte vullen, vierkant uiterlijk */
   .page2-section .services-process .services-process-card {
     width: 100% !important;
-    height: 38vw !important;         /* houdt ze vierkant-ish */
+    height: 38vw !important;
     aspect-ratio: auto !important;
     padding: 10px !important;
     border-radius: 12px !important;
@@ -1836,44 +1288,118 @@ input::placeholder, textarea::placeholder {
     overflow: hidden !important;
   }
 
-  /* derde kaart: span beide kolommen, maar zelfde breedte als één kolom */
   .page2-section .services-process .services-process-card:nth-child(3) {
-    grid-column: 1 / -1 !important;                 /* over 2 kolommen */
-    width: calc(50% - 6px) !important;              /* zelfde breedte als een kolom (gap=12) */
+    grid-column: 1 / -1 !important;
+    width: calc(50% - 6px) !important;
     justify-self: center !important;
   }
 
-  /* binnenwerk centreren en schaalbaar houden */
   .page2-section .services-process .services-process-card > :not(.card-hover-image) {
     margin: 0 !important;
     text-align: center !important;
   }
 
-  /* icon-blokjes precies vierkant + gecentreerd */
+  /* Icon blocks: perfect square */
   .page2-section .services-process .services-process-icon-container {
     aspect-ratio: 1 / 1 !important;
     width: 12vw !important;
-    height: auto !important;               /* door aspect-ratio komt hoogte goed */
+    height: auto !important;
     display: grid !important;
     place-items: center !important;
     margin-bottom: 2px !important;
     border-radius: 10px !important;
   }
+
+  .services-process-icon-container {
+    aspect-ratio: 1 / 1 !important;
+    display: grid !important;
+    place-items: center !important;
+  }
+
   .page2-section .services-process .services-process-icon-container img {
     width: 9vw !important;
     height: 9vw !important;
     object-fit: contain !important;
   }
 
-  /* Expertise/About schermvullend & gelijke witruimte */
-  .page2-section,
-  .about-section {
-    min-height: 100svh !important;
-    padding-inline: clamp(16px, 5vw, 24px) !important; /* gelijke marge L/R */
+  /* Hover images disabled on mobile */
+  .card-hover-image {
+    display: none !important;
   }
-  .page2-section .container,
-  .about-section .container {
-    padding-inline: 0 !important;  /* dubbele padding voorkomen */
+
+  /* Contact section: full screen */
+  .contact {
+    padding: clamp(8px, 2vh, 16px) 0 !important;
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+
+  .contact-header {
+    margin-bottom: clamp(8px, 1.5vh, 12px) !important;
+  }
+
+  .contact-title {
+    font-size: clamp(20px, 5vw, 28px) !important;
+    margin-bottom: 4px !important;
+  }
+
+  .contact-title-line {
+    margin-bottom: clamp(4px, 0.8vh, 8px) !important;
+  }
+
+  .contact-description {
+    font-size: clamp(12px, 3vw, 14px) !important;
+    margin-bottom: clamp(6px, 1.5vh, 10px) !important;
+    line-height: 1.5 !important;
+  }
+
+  .contact-content {
+    gap: clamp(12px, 2vh, 18px) !important;
+  }
+
+  .contact-item {
+    margin-bottom: 8px !important;
+  }
+
+  .contact-item h4 {
+    font-size: 10px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .contact-item p {
+    font-size: clamp(10px, 2.2vw, 12px) !important;
+  }
+
+  input, textarea {
+    padding: 8px 10px !important;
+    font-size: 13px !important;
+  }
+
+  .submit-button {
+    padding: 8px 14px !important;
+    font-size: 13px !important;
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    bottom: clamp(20px, 5vh, 40px) !important;
+    font-size: clamp(10px, 2.5vw, 12px) !important;
+    opacity: 1 !important;
+    display: block !important;
+  }
+
+  /* Other mobile adjustments */
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  :root {
+    --logo-nudge: 0px;
   }
 }
 

@@ -69,6 +69,18 @@ section {
   }
 }
 
+/* Op desktop (MacBook en groter): scroll snap weer aan */
+@media (min-width: 769px) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+  
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
 /* Focus visibility */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 2px solid #111; outline-offset: 2px;

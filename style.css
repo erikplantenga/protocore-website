@@ -699,23 +699,24 @@ svg * { transform-box: fill-box; transform-origin: center; }
 @media (max-width: 768px) {
   .services-process-cards {
     grid-template-columns: 1fr;
-    gap: clamp(16px, 4vw, 24px);
+    gap: clamp(10px, 1.5vw, 14px);
   }
   
   .services-process-card {
-    padding: clamp(24px, 6vw, 36px);
+    padding: clamp(16px, 2.5vw, 24px);
     border-radius: 12px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 0;
   }
   
   .services-process-icon-container {
-    width: clamp(60px, 15vw, 80px);
-    height: clamp(60px, 15vw, 80px);
-    margin-bottom: clamp(16px, 4vw, 24px);
+    width: clamp(40px, 6vw, 60px);
+    height: clamp(40px, 6vw, 60px);
+    margin-bottom: clamp(12px, 2vw, 16px);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -723,19 +724,19 @@ svg * { transform-box: fill-box; transform-origin: center; }
   }
   
   .services-process-icon-container img {
-    width: clamp(36px, 9vw, 48px);
-    height: clamp(36px, 9vw, 48px);
+    width: clamp(25px, 4vw, 35px);
+    height: clamp(25px, 4vw, 35px);
   }
   
   .services-process-card h3 {
-    font-size: clamp(16px, 4vw, 20px);
-    margin: 0 0 clamp(8px, 2vw, 12px) 0;
+    font-size: clamp(9px, 1.1vw, 11px);
+    margin: 0 0 clamp(6px, 1vw, 8px) 0;
     line-height: 1.3;
     text-align: center;
   }
   
   .card-request-text {
-    font-size: clamp(10px, 2.5vw, 12px);
+    font-size: clamp(8px, 1vw, 10px);
     margin: 0;
     line-height: 1.4;
     text-align: center;
@@ -1056,26 +1057,27 @@ input::placeholder, textarea::placeholder {
   
   .services-grid { grid-template-columns: 1fr; }
   
-  /* Services responsive voor mobiel - zelfde layout als iPad maar kleiner */
+  /* Services responsive voor mobiel - 2x kleiner dan iPad, zelfde verhoudingen */
   .services-process-cards {
     grid-template-columns: 1fr !important;
-    gap: clamp(16px, 4vw, 24px) !important;
+    gap: clamp(10px, 1.5vw, 14px) !important;
   }
   
   .services-process-card {
-    padding: clamp(24px, 6vw, 36px) !important;
+    padding: clamp(16px, 2.5vw, 24px) !important;
     border-radius: 12px !important;
     text-align: center !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
+    min-height: 0 !important;
   }
   
   .services-process-icon-container {
-    width: clamp(60px, 15vw, 80px) !important;
-    height: clamp(60px, 15vw, 80px) !important;
-    margin-bottom: clamp(16px, 4vw, 24px) !important;
+    width: clamp(40px, 6vw, 60px) !important;
+    height: clamp(40px, 6vw, 60px) !important;
+    margin-bottom: clamp(12px, 2vw, 16px) !important;
     border-radius: 10px !important;
     display: flex !important;
     align-items: center !important;
@@ -1083,19 +1085,19 @@ input::placeholder, textarea::placeholder {
   }
   
   .services-process-icon-container img {
-    width: clamp(36px, 9vw, 48px) !important;
-    height: clamp(36px, 9vw, 48px) !important;
+    width: clamp(25px, 4vw, 35px) !important;
+    height: clamp(25px, 4vw, 35px) !important;
   }
   
   .services-process-card h3 {
-    font-size: clamp(16px, 4vw, 20px) !important;
-    margin: 0 0 clamp(8px, 2vw, 12px) 0 !important;
+    font-size: clamp(9px, 1.1vw, 11px) !important;
+    margin: 0 0 clamp(6px, 1vw, 8px) 0 !important;
     line-height: 1.3 !important;
     text-align: center !important;
   }
   
   .card-request-text {
-    font-size: clamp(10px, 2.5vw, 12px) !important;
+    font-size: clamp(8px, 1vw, 10px) !important;
     margin: 0 !important;
     line-height: 1.4 !important;
     text-align: center !important;
@@ -1290,20 +1292,21 @@ input::placeholder, textarea::placeholder {
   
   /* Page2/Expertise sectie - volledig schermvullend */
   .page2-section {
-    padding: clamp(16px, 4vh, 24px) clamp(12px, 3vw, 20px) !important;
+    padding: clamp(12px, 3vh, 20px) clamp(12px, 3vw, 20px) !important;
     min-height: 100vh !important;
     min-height: -webkit-fill-available !important;
     height: 100vh !important;
     height: -webkit-fill-available !important;
-    overflow: visible !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
   }
   
   .page2-content {
     width: 100% !important;
-    padding: 0 !important;
+    padding: clamp(8px, 2vh, 12px) 0 0 0 !important;
   }
   
   .services-header {
@@ -1316,8 +1319,12 @@ input::placeholder, textarea::placeholder {
   }
   
   .services-title-line {
-    margin-bottom: clamp(1px, 0.3vh, 3px) !important;
-    height: 1px !important;
+    margin-bottom: clamp(8px, 1.5vh, 12px) !important;
+    height: 2px !important;
+  }
+  
+  .about-title-line {
+    height: 2px !important;
   }
   
   .services-description {

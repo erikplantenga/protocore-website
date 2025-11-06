@@ -1809,4 +1809,72 @@ input::placeholder, textarea::placeholder {
   }
 }
 
+/* === PHONE FIX: 2 boven, 1 gecentreerd eronder + vierkante icon-vlakjes === */
+@media (max-width: 640px) {
+
+  /* 2 kolommen en items centreren binnen hun kolom */
+  .page2-section .services-process .services-process-cards {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    justify-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+  }
+
+  /* standaard kaart: kolombreedte vullen, vierkant uiterlijk */
+  .page2-section .services-process .services-process-card {
+    width: 100% !important;
+    height: 38vw !important;         /* houdt ze vierkant-ish */
+    aspect-ratio: auto !important;
+    padding: 10px !important;
+    border-radius: 12px !important;
+    display: grid !important;
+    place-items: center !important;
+    overflow: hidden !important;
+  }
+
+  /* derde kaart: span beide kolommen, maar zelfde breedte als één kolom */
+  .page2-section .services-process .services-process-card:nth-child(3) {
+    grid-column: 1 / -1 !important;                 /* over 2 kolommen */
+    width: calc(50% - 6px) !important;              /* zelfde breedte als een kolom (gap=12) */
+    justify-self: center !important;
+  }
+
+  /* binnenwerk centreren en schaalbaar houden */
+  .page2-section .services-process .services-process-card > :not(.card-hover-image) {
+    margin: 0 !important;
+    text-align: center !important;
+  }
+
+  /* icon-blokjes precies vierkant + gecentreerd */
+  .page2-section .services-process .services-process-icon-container {
+    aspect-ratio: 1 / 1 !important;
+    width: 12vw !important;
+    height: auto !important;               /* door aspect-ratio komt hoogte goed */
+    display: grid !important;
+    place-items: center !important;
+    margin-bottom: 2px !important;
+    border-radius: 10px !important;
+  }
+  .page2-section .services-process .services-process-icon-container img {
+    width: 9vw !important;
+    height: 9vw !important;
+    object-fit: contain !important;
+  }
+
+  /* Expertise/About schermvullend & gelijke witruimte */
+  .page2-section,
+  .about-section {
+    min-height: 100svh !important;
+    padding-inline: clamp(16px, 5vw, 24px) !important; /* gelijke marge L/R */
+  }
+  .page2-section .container,
+  .about-section .container {
+    padding-inline: 0 !important;  /* dubbele padding voorkomen */
+  }
+}
+
 

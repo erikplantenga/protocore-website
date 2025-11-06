@@ -1,5 +1,26 @@
 // Single DOMContentLoaded orchestrating all setup
 document.addEventListener('DOMContentLoaded', () => {
+  // Hamburger menu toggle (simple version)
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('nav-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      menu.classList.toggle('is-open', !open);
+      document.body.classList.toggle('no-scroll', !open);
+    });
+
+    // Sluit menu bij klik op link
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('is-open');
+        document.body.classList.remove('no-scroll');
+      });
+    });
+  }
+
   setupMobileNav();
   loadLogoInline();
   setupContactForm();

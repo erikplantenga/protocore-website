@@ -1345,9 +1345,13 @@ input::placeholder, textarea::placeholder {
 
   /* Click for request: hoger zetten, meer ruimte eronder (mobile) */
   .services-process-card .card-request-text {
-    margin-top: 4px !important;
-    margin-bottom: 6px !important;
-    padding-bottom: 6px !important;
+    margin-top: 6px !important;   /* was te klein */
+    margin-bottom: 2px !important;
+  }
+
+  /* Titel iets omhoog zodat het totaal meer balanceert */
+  .services-process-card h3 {
+    margin-bottom: 4px !important;
   }
 
   /* Hover images disabled on mobile */

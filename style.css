@@ -57,15 +57,17 @@ section {
   scroll-snap-stop: always;
 }
 
-/* Op mobiel: geen scroll snap (blokkeert scrollen) */
+/* Op mobiel: scroll snap aan - elke sectie 1 scherm */
 @media (max-width: 768px) {
   html {
-    scroll-snap-type: none;
+    scroll-snap-type: y mandatory;
   }
   
   section {
-    scroll-snap-align: none;
-    scroll-snap-stop: normal;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
   }
 }
 
@@ -1083,14 +1085,16 @@ input::placeholder, textarea::placeholder {
     display: none !important;
   }
   
-  /* Hero fix voor iPhone - compact voor 1 scherm */
+  /* Hero fix voor iPhone - volledig schermvullend */
   .hero {
-    min-height: 100vh;
-    min-height: -webkit-fill-available; /* iPhone Safari fix */
-    padding-block: clamp(12px, 2.5vh, 24px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important; /* iPhone Safari fix */
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+    padding-block: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   
   .hero-content {
@@ -1191,10 +1195,16 @@ input::placeholder, textarea::placeholder {
     animation: punt-in 1300ms ease-out 900ms 1 both !important;
   }
   
-  /* About sectie op mobiel - compact voor 1 scherm */
+  /* About sectie op mobiel - volledig schermvullend */
   .about-section {
-    padding: clamp(8px, 1.5vh, 16px) 0 !important;
-    min-height: auto !important;
+    padding: clamp(8px, 2vh, 16px) 0 !important;
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
   }
   
   .about-section .container {
@@ -1202,7 +1212,7 @@ input::placeholder, textarea::placeholder {
   }
   
   .about-title {
-    font-size: clamp(18px, 4.5vw, 24px) !important;
+    font-size: clamp(20px, 5vw, 28px) !important;
     margin-bottom: 4px !important;
   }
   
@@ -1253,12 +1263,17 @@ input::placeholder, textarea::placeholder {
     font-size: 10px; 
   }
   
-  /* Page2/Expertise sectie - ULTRA compact voor 1 scherm */
+  /* Page2/Expertise sectie - volledig schermvullend */
   .page2-section {
-    padding: clamp(2px, 0.5vh, 4px) 0 !important;
-    min-height: auto !important;
+    padding: clamp(8px, 2vh, 16px) 0 !important;
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
     overflow: visible !important;
-    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
   }
   
   .services-header {
@@ -1266,7 +1281,7 @@ input::placeholder, textarea::placeholder {
   }
   
   .services-title {
-    font-size: clamp(12px, 3vw, 16px) !important;
+    font-size: clamp(20px, 5vw, 28px) !important;
     margin-bottom: 1px !important;
   }
   
@@ -1290,16 +1305,28 @@ input::placeholder, textarea::placeholder {
     margin-top: clamp(4px, 0.8vh, 6px) !important;
   }
   
-  /* Services sectie - compact voor 1 scherm */
+  /* Services sectie - volledig schermvullend */
   .services {
-    padding: clamp(12px, 2vh, 24px) 0 !important;
-    min-height: auto !important;
+    padding: clamp(8px, 2vh, 16px) 0 !important;
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
   }
   
-  /* Contact sectie - compact voor 1 scherm */
+  /* Contact sectie - volledig schermvullend */
   .contact {
-    padding: clamp(8px, 1.5vh, 16px) 0 !important;
-    min-height: auto !important;
+    padding: clamp(8px, 2vh, 16px) 0 !important;
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
   }
   
   .contact-header {
@@ -1307,7 +1334,7 @@ input::placeholder, textarea::placeholder {
   }
   
   .contact-title {
-    font-size: clamp(18px, 4.5vw, 24px) !important;
+    font-size: clamp(20px, 5vw, 28px) !important;
     margin-bottom: 4px !important;
   }
   

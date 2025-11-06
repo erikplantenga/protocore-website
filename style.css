@@ -1008,11 +1008,11 @@ input::placeholder, textarea::placeholder {
     height: clamp(50px, 14vw, 70px) !important;
   }
   
-  /* Hero fix voor iPhone - geen top positioning */
+  /* Hero fix voor iPhone - compact voor 1 scherm */
   .hero {
     min-height: 100vh;
     min-height: -webkit-fill-available; /* iPhone Safari fix */
-    padding-block: clamp(40px, 8vh, 60px);
+    padding-block: clamp(20px, 4vh, 40px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1027,11 +1027,11 @@ input::placeholder, textarea::placeholder {
     align-items: center;
   }
   
-  /* Logo - animaties op mobiel met fallback voor iPhone */
+  /* Logo - animaties op mobiel met fallback voor iPhone - kleiner voor 1 scherm */
   #logo {
     opacity: 0;
     width: 100%;
-    min-height: 200px;
+    min-height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1064,16 +1064,16 @@ input::placeholder, textarea::placeholder {
     padding: 4px 8px; 
   }
   
-  /* Logo 10% kleiner voor mobiel - animaties aan */
+  /* Logo kleiner voor mobiel - compact voor 1 scherm */
   #logo svg, #logo img { 
-    width: clamp(252px, 76.5vw, 450px) !important; /* 10% kleiner dan 280px */
+    width: clamp(200px, 60vw, 350px) !important;
     display: block !important;
   }
   
-  /* Teksten kleiner voor mobiel - eenvoudige fade-in met snelle fallback */
+  /* Teksten kleiner voor mobiel - compact voor 1 scherm */
   .hero-subtitle { 
-    font-size: clamp(10px, 3vw, 14px) !important;
-    margin-top: 48px;
+    font-size: clamp(9px, 2.5vw, 12px) !important;
+    margin-top: 24px;
   }
   
   .hero-subtitle span {
@@ -1116,10 +1116,33 @@ input::placeholder, textarea::placeholder {
     animation: punt-in 1300ms ease-out 900ms 1 both !important;
   }
   
-  /* About sectie op mobiel */
+  /* About sectie op mobiel - compact voor 1 scherm */
   .about-section {
-    padding-top: clamp(80px, 15vh, 120px) !important;
-    padding-bottom: clamp(60px, 10vh, 80px) !important;
+    padding: clamp(12px, 2vh, 24px) 0 !important;
+    min-height: auto !important;
+  }
+  
+  .about-section .container {
+    min-height: auto !important;
+  }
+  
+  .about-title {
+    font-size: clamp(20px, 5vw, 28px) !important;
+    margin-bottom: 8px !important;
+  }
+  
+  .about-title-line {
+    margin-bottom: clamp(16px, 3vh, 24px) !important;
+  }
+  
+  .about-text {
+    font-size: clamp(11px, 2.5vw, 14px) !important;
+    margin-bottom: clamp(8px, 2vh, 12px) !important;
+    line-height: 1.5 !important;
+  }
+  
+  .about-photo-container {
+    margin-top: clamp(12px, 3vh, 20px) !important;
   }
   
   .about-photos {
@@ -1143,8 +1166,100 @@ input::placeholder, textarea::placeholder {
   
   /* Scroll indicator kleiner op mobiel */
   .scroll-indicator { 
-    bottom: clamp(20px, 5vh, 40px); 
-    font-size: 11px; 
+    bottom: clamp(10px, 2vh, 20px); 
+    font-size: 10px; 
+  }
+  
+  /* Page2/Expertise sectie - compact voor 1 scherm */
+  .page2-section {
+    padding: clamp(12px, 2vh, 24px) 0 !important;
+    min-height: auto !important;
+  }
+  
+  .services-header {
+    margin-bottom: clamp(12px, 2vh, 20px) !important;
+  }
+  
+  .services-title {
+    font-size: clamp(20px, 5vw, 28px) !important;
+    margin-bottom: 8px !important;
+  }
+  
+  .services-title-line {
+    margin-bottom: clamp(8px, 1.5vh, 12px) !important;
+  }
+  
+  .services-description {
+    font-size: clamp(11px, 2.5vw, 13px) !important;
+    margin-bottom: clamp(6px, 1.5vh, 10px) !important;
+    line-height: 1.5 !important;
+  }
+  
+  .services-choose-path {
+    font-size: clamp(12px, 3vw, 16px) !important;
+    margin: clamp(16px, 3vh, 24px) auto 0 !important;
+  }
+  
+  .services-process {
+    margin-top: clamp(16px, 3vh, 24px) !important;
+  }
+  
+  /* Services sectie - compact voor 1 scherm */
+  .services {
+    padding: clamp(12px, 2vh, 24px) 0 !important;
+    min-height: auto !important;
+  }
+  
+  /* Contact sectie - compact voor 1 scherm */
+  .contact {
+    padding: clamp(12px, 2vh, 24px) 0 !important;
+    min-height: auto !important;
+  }
+  
+  .contact-header {
+    margin-bottom: clamp(12px, 2vh, 20px) !important;
+  }
+  
+  .contact-title {
+    font-size: clamp(20px, 5vw, 28px) !important;
+    margin-bottom: 8px !important;
+  }
+  
+  .contact-title-line {
+    margin-bottom: clamp(8px, 1.5vh, 12px) !important;
+  }
+  
+  .contact-description {
+    font-size: clamp(11px, 2.5vw, 13px) !important;
+    margin-bottom: clamp(6px, 1.5vh, 10px) !important;
+    line-height: 1.5 !important;
+  }
+  
+  .contact-content {
+    gap: clamp(16px, 3vh, 24px) !important;
+  }
+  
+  .contact-item {
+    margin-bottom: 12px !important;
+  }
+  
+  .contact-item h4 {
+    font-size: 11px !important;
+    margin-bottom: 4px !important;
+  }
+  
+  .contact-item p {
+    font-size: clamp(11px, 2.5vw, 13px) !important;
+  }
+  
+  input, textarea {
+    padding: 10px 12px !important;
+    font-size: 14px !important;
+  }
+  
+  .submit-button {
+    padding: 10px 16px !important;
+    font-size: 14px !important;
   }
   
   :root { --logo-nudge: 0px; }

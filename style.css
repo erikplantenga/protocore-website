@@ -1024,20 +1024,35 @@ input::placeholder, textarea::placeholder {
   
   .services-grid { grid-template-columns: 1fr; }
   
-  /* Services responsive voor mobiel */
+  /* Services responsive voor mobiel - ULTRA klein */
   .services-process-cards {
     grid-template-columns: 1fr !important;
-    gap: clamp(24px, 4vw, 32px) !important;
+    gap: clamp(4px, 0.8vw, 6px) !important;
+  }
+  
+  .services-process-card {
+    padding: clamp(6px, 1.2vw, 8px) !important;
   }
   
   .services-process-icon-container {
-    width: clamp(85px, 20vw, 120px) !important;
-    height: clamp(85px, 20vw, 120px) !important;
+    width: clamp(18px, 4.5vw, 24px) !important;
+    height: clamp(18px, 4.5vw, 24px) !important;
+    margin-bottom: 3px !important;
   }
   
   .services-process-icon-container img {
-    width: clamp(50px, 14vw, 70px) !important;
-    height: clamp(50px, 14vw, 70px) !important;
+    width: clamp(10px, 2.5vw, 14px) !important;
+    height: clamp(10px, 2.5vw, 14px) !important;
+  }
+  
+  .services-process-card h3 {
+    font-size: clamp(7px, 1.6vw, 9px) !important;
+    margin: 0 0 1px 0 !important;
+  }
+  
+  .card-request-text {
+    font-size: clamp(5px, 1vw, 7px) !important;
+    margin: 0 !important;
   }
   
   /* Hero fix voor iPhone - compact voor 1 scherm */

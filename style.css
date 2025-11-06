@@ -1123,8 +1123,9 @@ input::placeholder, textarea::placeholder {
   }
 
   .hero-subtitle span {
+    display: inline-block !important;
     opacity: 0 !important;
-    animation: text-fade-in 600ms ease-out forwards !important;
+    animation: text-fade-in 600ms ease-out 1 both !important;
   }
 
   .hero-subtitle .hero-word-1 {

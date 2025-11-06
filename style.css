@@ -339,7 +339,7 @@ svg * { transform-box: fill-box; transform-origin: center; }
   color: #333;
 }
 /* About Section - Effen grijs gradient naar wit, zonder strepen */
-.about-section { 
+.about-section {
   position: relative;
   padding: clamp(16px, 3vw, 48px) 0 clamp(48px, 8vw, 96px) 0 !important; 
   background: #e0e0e0 !important;
@@ -689,13 +689,13 @@ svg * { transform-box: fill-box; transform-origin: center; }
 
 /* Hover effect - alleen op devices met pointer (niet touch) */
 @media (hover: hover) and (pointer: fine) {
-  .services-process-card:hover {
-    transform: translateY(-5px);
+.services-process-card:hover {
+  transform: translateY(-5px);
     background: linear-gradient(135deg, #373737 0%, #2c2c2c 50%, #373737 100%);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
     border-color: #e6891a;
-  }
-  
+}
+
   .services-process-card:hover .card-hover-image {
     opacity: 0.3;
   }

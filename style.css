@@ -1158,11 +1158,12 @@ input::placeholder, textarea::placeholder {
   }
   
   .about-photo-container {
-    margin-top: clamp(8px, 1.5vh, 12px) !important;
+    margin-top: clamp(6px, 1vh, 10px) !important;
   }
   
   .about-photo {
-    max-height: 200px !important;
+    max-height: 130px !important;
+    width: 100% !important;
     object-fit: cover !important;
   }
   

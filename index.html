@@ -174,7 +174,8 @@
         </div>
 
         <div class="contact-form">
-          <form id="contactForm" action="contact-form.php" method="POST">
+          <form id="contactForm" action="https://formspree.io/f/xyzrpyob" method="POST">
+            <div id="formMessage" class="form-message" style="display: none;"></div>
             <div class="form-group">
               <input type="text" id="name" name="name" placeholder="Name" required />
             </div>
@@ -182,12 +183,11 @@
               <input type="email" id="email" name="email" placeholder="Email" required />
             </div>
             <div class="form-group">
-              <input type="text" id="subject" name="subject" placeholder="Subject" required />
-            </div>
-            <div class="form-group">
               <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
             </div>
-            <button type="submit" class="submit-button">Send</button>
+            <!-- Hidden field voor email onderwerp -->
+            <input type="hidden" name="_subject" value="Nieuw bericht via protocore.nl" />
+            <button type="submit" class="submit-button" id="submitButton">Send</button>
           </form>
         </div>
       </div>

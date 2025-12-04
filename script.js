@@ -136,23 +136,97 @@ function setupContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
   
-  // Check voor success parameter in URL (na redirect van PHP)
+  const formMessage = document.getElementById('formMessage');
+  const submitButton = document.getElementById('submitButton');
+  
+  // Helper functie om berichten te tonen
+  const showMessage = (message, isError = false) => {
+    if (!formMessage) return;
+    formMessage.textContent = message;
+    formMessage.style.display = 'block';
+    formMessage.style.background = isError ? '#fee' : '#4ade80';
+    formMessage.style.color = isError ? '#c00' : 'white';
+    formMessage.style.padding = '16px';
+    formMessage.style.borderRadius = '8px';
+    formMessage.style.marginBottom = '20px';
+    formMessage.style.textAlign = 'center';
+    formMessage.style.border = isError ? '2px solid #c00' : 'none';
+    
+    // Scroll naar bericht
+    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    // Verwijder bericht na 5 seconden (behalve bij errors, die blijven staan)
+    if (!isError) {
+      setTimeout(() => {
+        formMessage.style.display = 'none';
+      }, 5000);
+    }
+  };
+  
+  // Formulier submit handler
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formAction = form.getAttribute('action');
+    
+    // Disable submit button tijdens verzending
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    
+    // Verberg vorige berichten
+    if (formMessage) formMessage.style.display = 'none';
+    
+    // Verzamel formulier data
+    const formData = new FormData(form);
+    
+    // Test payload voor console logging
+    const testPayload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+      _subject: formData.get('_subject')
+    };
+    console.log('📤 Verzenden naar Formspree:', testPayload);
+    
+    try {
+      const response = await fetch(formAction, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        // Success!
+        console.log('✅ Formulier succesvol verzonden:', data);
+        showMessage('Bedankt! Je bericht is verzonden. We nemen zo snel mogelijk contact met je op.');
+        form.reset();
+      } else {
+        // API error
+        console.error('❌ Formspree API error:', data);
+        const errorMsg = data.error || 'Er ging iets mis bij het versturen. Probeer het opnieuw.';
+        showMessage(`Fout: ${errorMsg}`, true);
+      }
+    } catch (error) {
+      // Network of andere error
+      console.error('❌ Network error:', error);
+      showMessage('Er ging iets mis bij het versturen. Controleer je internetverbinding en probeer het opnieuw.', true);
+    } finally {
+      // Herstel submit button
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
+  });
+  
+  // Check voor success parameter in URL (voor directe links)
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('success') === '1') {
-    // Toon success melding
-    const successMsg = document.createElement('div');
-    successMsg.style.cssText = 'background: #4ade80; color: white; padding: 16px; border-radius: 8px; margin-bottom: 20px; text-align: center;';
-    successMsg.textContent = 'Bedankt! Je bericht is verzonden. We nemen zo snel mogelijk contact met je op.';
-    form.parentNode.insertBefore(successMsg, form);
-    
-    // Verwijder melding na 5 seconden
-    setTimeout(() => {
-      successMsg.remove();
-    }, 5000);
+    showMessage('Bedankt! Je bericht is verzonden. We nemen zo snel mogelijk contact met je op.');
   }
-  
-  // Laat formulier normaal verzenden naar PHP
-  // Geen preventDefault meer nodig
 }
 
 function setupNavScrollEffect() {
@@ -264,7 +338,6 @@ function fixLogoTightCrop() {
 
 function setupHoverImages() {
   const cards = document.querySelectorAll('.services-process-card[data-hover-image]');
-  const subjectInput = document.getElementById('subject');
 
   let activeCard = null;
   const closeActive = () => {
@@ -283,7 +356,6 @@ function setupHoverImages() {
   cards.forEach(card => {
     const imageUrl = card.getAttribute('data-hover-image');
     const hoverImageDiv = card.querySelector('.card-hover-image');
-    const cardTitle = (card.querySelector('h3')?.textContent || '').trim();
     if (!imageUrl || !hoverImageDiv) return;
     hoverImageDiv.style.backgroundImage = `url(${imageUrl})`;
 
@@ -295,7 +367,6 @@ function setupHoverImages() {
         // 1e tap: toon image, 2e tap: ga naar contact
         if (activeCard === card) {
           closeActive();
-          if (subjectInput) subjectInput.value = cardTitle.toUpperCase();
           const contact = document.getElementById('contact');
           if (contact) {
             contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -308,7 +379,6 @@ function setupHoverImages() {
         }
       } else {
         // desktop/tablet: direct naar contact
-        if (subjectInput) subjectInput.value = cardTitle.toUpperCase();
         const contact = document.getElementById('contact');
         if (contact) {
           contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -322,28 +392,18 @@ function setupHoverImages() {
 function setupProcessCardClicks() {
   // Luister naar klikken op de process cards (SKETCH IT, RENDER IT, BUILD IT)
   const processCards = document.querySelectorAll('.services-process-card');
-  const subjectInput = document.getElementById('subject');
-  
-  if (!subjectInput) return;
   
   processCards.forEach(card => {
     card.addEventListener('click', (e) => {
-      // Zoek de h3 tekst in de card (SKETCH IT, RENDER IT, of BUILD IT)
-      const h3 = card.querySelector('h3');
-      if (h3 && h3.textContent) {
-        // Vul het subject veld in met "Subject: " + de tekst uit de h3
-        subjectInput.value = 'Subject: ' + h3.textContent.trim();
+      // Scroll naar het contactformulier
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         
-        // Scroll naar het contactformulier
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-          contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          
-          // Focus op het subject veld na een korte delay (voor betere UX)
-          setTimeout(() => {
-            subjectInput.focus();
-          }, 500);
-        }
+        // Focus op het name veld na een korte delay (voor betere UX)
+        setTimeout(() => {
+          document.getElementById('name')?.focus();
+        }, 500);
       }
     });
   });

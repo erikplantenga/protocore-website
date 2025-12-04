@@ -22,8 +22,6 @@ protocore-website/
 ├── index.html              # Hoofdpagina
 ├── style.css              # Alle styling
 ├── script.js              # JavaScript functionaliteit
-├── contact-form.php       # PHP email handler (optioneel)
-├── INSTRUCTIES.md         # Uitgebreide handleiding in Nederlands
 └── README.md             # Dit bestand
 ```
 
@@ -34,7 +32,7 @@ protocore-website/
 2. Dat is alles! 🎉
 
 ### Online Zetten:
-Zie `INSTRUCTIES.md` voor gedetailleerde stappen om je website naar Strato te uploaden.
+De website is geconfigureerd voor GitHub Pages. Push naar de `main` branch en GitHub Pages zal automatisch deployen.
 
 ## 🎨 Aanpassen
 
@@ -54,22 +52,12 @@ Open `index.html` en pas de teksten aan naar wens
 
 ## 📧 Contact Formulier
 
-Het formulier heeft twee opties:
+Het contactformulier gebruikt **Formspree** voor email verzending. Het formulier is volledig statisch en werkt perfect met GitHub Pages.
 
-### Optie 1: Simpele Alert (Standaard)
-Werkt direct, toont een bevestigingsbericht
-
-### Optie 2: Email met PHP
-1. Upload `contact-form.php` naar je server
-2. Pas email adres aan in `contact-form.php`
-3. Wijzig in `script.js` regel 68 naar:
-```javascript
-contactForm.action = 'contact-form.php';
-contactForm.method = 'POST';
-```
-
-### Optie 3: Email Service
-Gebruik FormSpree of EmailJS (zie INSTRUCTIES.md)
+- **Endpoint**: `https://formspree.io/f/xyzrpyob`
+- **Velden**: name, email, message
+- **Email onderwerp**: "Nieuw bericht via protocore.nl"
+- **Success/Error handling**: Automatisch via JavaScript
 
 ## 🌐 Browser Support
 
@@ -94,7 +82,7 @@ Gebruik FormSpree of EmailJS (zie INSTRUCTIES.md)
 
 ## 📞 Support
 
-Zie `INSTRUCTIES.md` voor uitgebreide hulp in het Nederlands.
+Voor vragen over de website, neem contact op via het contactformulier op de website.
 
 ## 📄 Licentie
 
